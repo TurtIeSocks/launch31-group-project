@@ -2,6 +2,4 @@
 
 Meme team Dream team
 
-Hello, Derick, this is Git.
-
-Hey, this is Tom, and I'm changing the Readme. And there's nothing you can do about it!
+Hey, This is Ryan, I am changing the Readme. Try and stop me cowards!!!
