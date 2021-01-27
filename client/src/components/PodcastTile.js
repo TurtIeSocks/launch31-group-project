@@ -1,12 +1,12 @@
-import React from "react";
+import React from "react"
 
 const PodcastTile = ({ podcast }) => {
   return (
-    <div className="callout primary" key={podcast.id}>
+    <div className="callout primary">
       <h1>{podcast.name}</h1>
       <p>{podcast.description}</p>
     </div>
-  );
-};
+  )
+}
 
-export default PodcastTile;
+export default PodcastTile
