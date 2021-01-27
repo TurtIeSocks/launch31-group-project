@@ -9,7 +9,7 @@ const clientRoutes = [
   "/users/new",
   "/podcasts",
   "/genres",
-  "podcasts/:id",
+  "/podcasts/:id",
   "/genres/:id",
   "/profile",
 ]
