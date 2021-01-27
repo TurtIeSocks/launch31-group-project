@@ -1,8 +1,8 @@
 import express from 'express'
-import { Genre } from '../../../models/index.js'
-
 import objection from 'objection'
 const { ValidationError } = objection
+
+import { Genre } from '../../../models/index.js'
 import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const genresRouter = new express.Router()
