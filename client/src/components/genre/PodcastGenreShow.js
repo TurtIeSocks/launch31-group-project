@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import PodcastTile from '../PodcastTile.js' 
+import PodcastTile from '../podcasts/PodcastTile.js' 
 
 const PodcastGenreShow = props => {
   const [podcasts, setPodcasts] = useState([])
