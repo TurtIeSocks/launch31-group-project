@@ -7,17 +7,17 @@
  */
 exports.up = async (knex) => {
   return knex.schema.createTable("podcasts", (table) => {
-    table.bigIncrements("id").primary();
-    table.string("name").notNullable().unique();
-    table.string("description");
-    table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
-    table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
-  });
-};
+    table.bigIncrements("id").primary()
+    table.string("name").notNullable().unique()
+    table.string("description")
+    table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
+    table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
+  })
+}
 
 /**
  * @param {Knex} knex
  */
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists("podcasts");
-};
+  return knex.schema.dropTableIfExists("podcasts")
+}

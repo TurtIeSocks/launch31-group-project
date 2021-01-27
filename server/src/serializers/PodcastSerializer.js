@@ -1,13 +1,13 @@
 class PodcastSerializer {
   static getSummary(podcast) {
-    const allowedAttributes = ["id", "name", "description"];
+    const allowedAttributes = ["id", "name", "description"]
 
-    let serializedPodcast = {};
+    let serializedPodcast = {}
 
     for (const attribute of allowedAttributes) {
-      serializedPodcast[attribute] = podcast[attribute];
+      serializedPodcast[attribute] = podcast[attribute]
     }
-    return serializedPodcast;
+    return serializedPodcast
   }
 }
-export default PodcastSerializer;
+export default PodcastSerializer

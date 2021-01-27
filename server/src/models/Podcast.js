@@ -1,8 +1,8 @@
-const Model = require("./Model");
+const Model = require("./Model")
 
 class Podcast extends Model {
   static get tableName() {
-    return "podcasts";
+    return "podcasts"
   }
 
   static get jsonSchema() {
@@ -11,10 +11,10 @@ class Podcast extends Model {
       required: ["name"],
       properties: {
         name: { type: "string", minLength: 1 },
-        description: { type: "string", minLength: 1 },
-      },
-    };
+        description: { type: "string" }
+      }
+    }
   }
 }
 
-module.exports = Podcast;
+module.exports = Podcast

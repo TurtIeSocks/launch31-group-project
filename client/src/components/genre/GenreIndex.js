@@ -33,7 +33,7 @@ const GenreIndex = props => {
     )
   })
   return(
-    <div >
+    <div>
       {genreItems}
     </div>
   )

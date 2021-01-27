@@ -1,4 +1,4 @@
-import { Podcast } from "../../models/index.js";
+import { Podcast } from "../../models/index.js"
 
 class PodcastSeeder {
   static async seed() {
@@ -19,15 +19,15 @@ class PodcastSeeder {
         name: "Welcome to Nightvale",
         description: "I'm Cecil Baldwin.",
       },
-    ];
+    ]
 
     for (const currentPodcast of podcastData) {
-      const podcastRecord = await Podcast.query().findOne({ name: currentPodcast.name });
+      const podcastRecord = await Podcast.query().findOne({ name: currentPodcast.name })
       if (!podcastRecord) {
-        await Podcast.query().insert(currentPodcast);
+        await Podcast.query().insert(currentPodcast)
       }
     }
   }
 }
 
-export default PodcastSeeder;
+export default PodcastSeeder

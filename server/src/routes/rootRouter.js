@@ -4,7 +4,7 @@ import usersRouter from "./api/v1/usersRouter.js"
 import clientRouter from "./clientRouter.js"
 import podcastsRouter from "./api/v1/podcastsRouter.js"
 import genresRouter from './api/v1/genresRouter.js'
-const rootRouter = new express.Router();
+const rootRouter = new express.Router()
 
 rootRouter.use("/", clientRouter)
 rootRouter.use("/api/v1/user-sessions", userSessionsRouter)
