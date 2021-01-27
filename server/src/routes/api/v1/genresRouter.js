@@ -19,7 +19,7 @@ genresRouter.get('/', async (req, res)=> {
 genresRouter.get('/:id', async (req, res)=> {
   try {
     const {id} = req.params
-    genre = await Genre.query().findById(id)
+    const genre = await Genre.query().findById(id)
     genre.podcasts = await genre.$relatedQuery("podcasts")
     return res.status(200).json({genre: genre})
   } catch (error) {
