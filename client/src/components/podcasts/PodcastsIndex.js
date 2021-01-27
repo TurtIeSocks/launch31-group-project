@@ -21,20 +21,11 @@ const PodcastsIndex = (props) => {
     getPodcasts()
   }, [])
 
-  const podcastTiles = podcasts.map(podcast => {
-    return (
-        <PodcastTile 
-          key={podcast.id}
-          podcast={podcast} 
-        />
-    )
+  const podcastTiles = podcasts.map((podcast) => {
+    return <PodcastTile key={podcast.id} podcast={podcast} />
   })
 
-  return(
-    <div>
-      {podcastTiles}
-    </div>
-  )
+  return <div>{podcastTiles}</div>
 }
 
 export default PodcastsIndex
