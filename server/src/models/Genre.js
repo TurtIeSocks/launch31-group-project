@@ -5,7 +5,8 @@ class Genre extends Model {
     return "genres"
   }
   static get relationMappings() {
-    const Podcast = require('./Podcast.js')
+    const { Podcast } = require('./index.js')
+
     return {
       podcasts: {
         relation: Model.HasManyRelation,

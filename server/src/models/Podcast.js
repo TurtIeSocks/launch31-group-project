@@ -17,7 +17,8 @@ class Podcast extends Model {
   }
 
   static get relationMappings() {
-    const Genre = require("./Genre.js")
+    const { Genre } = require("./index.js")
+
     return {
       genre: {
         relation: Model.BelongsToOneRelation,
