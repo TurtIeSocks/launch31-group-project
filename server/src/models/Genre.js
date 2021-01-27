@@ -1,9 +1,9 @@
-const Model = require("./Model.js");
+const Model = require("./Model.js")
 
 class Genre extends Model {
   static get tableName() {
-    return "genres";
+    return "genres"
   }
 }
 
-module.exports = Genre;
+module.exports = Genre
