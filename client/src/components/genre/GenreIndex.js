@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import GenreTile from './GenreTile.js'
 
 const GenreIndex = props => {
@@ -32,9 +33,13 @@ const GenreIndex = props => {
       />
     )
   })
+
   return(
     <div>
       {genreItems}
+      <div className='callout'>
+        <Link to='/genres/new'>Submit a New Genre!</Link>
+      </div>
     </div>
   )
 }

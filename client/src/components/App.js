@@ -13,6 +13,7 @@ import UserProfile from "./UserProfile.js"
 import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
 import PodcastGenreShow from "./genre/PodcastGenreShow.js"
+import GenreForm from './genre/GenreForm.js' 
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -42,6 +43,7 @@ const App = (props) => {
         <Route exact path="/podcasts" component={PodcastsIndex} />
         <Route exact path="/podcasts/:id" component={PodcastShowPage} />
         <Route exact path="/genres" component={GenreIndex} />
+        <Route exact path="/genres/new" component={GenreForm} />
         <Route exact path="/genres/:id" component={PodcastGenreShow} />
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
       </Switch>
