@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 const PodcastTile = ({ podcast }) => {
   return (
@@ -9,7 +9,7 @@ const PodcastTile = ({ podcast }) => {
         <p>{podcast.description}</p>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default PodcastTile;
+export default PodcastTile
