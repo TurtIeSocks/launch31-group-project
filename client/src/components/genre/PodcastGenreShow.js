@@ -7,7 +7,6 @@ const PodcastGenreShow = props => {
 
   const getPodcasts = async () => {
     const genreId = props.match.params.id
-    console.log(genreId)
     
     try {
       const response = await fetch(`/api/v1/genres/${genreId}`)
