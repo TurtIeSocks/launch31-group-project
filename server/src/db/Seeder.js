@@ -6,9 +6,6 @@ class Seeder {
     console.log("seeding Genres")
     await genreSeeder.seed()
 
-    console.log("Seeding podcasts...")
-    await PodcastSeeder.seed()
-
     console.log("Done!")
     await connection.destroy()
   }

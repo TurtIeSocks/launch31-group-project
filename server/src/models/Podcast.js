@@ -15,6 +15,20 @@ class Podcast extends Model {
       }
     }
   }
+
+  static get relationMappings() {
+    const Genre = require("./Genre.js")
+    return {
+      genre: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Genre,
+        join: {
+          from: "podcasts.genreId",
+          to: "genres.id"
+        }
+      }
+    }
+  }
 }
 
 module.exports = Podcast
