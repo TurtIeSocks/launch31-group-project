@@ -9,8 +9,9 @@ const clientRoutes = [
   "/users/new",
   "/podcasts",
   "/genres",
-  "podcasts/:id",
-  '/genres/:id'
+  "/podcasts/:id",
+  "/genres/:id",
+  "/profile",
 ]
 router.get(clientRoutes, (req, res) => {
   res.sendFile(getClientIndexPath())
