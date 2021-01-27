@@ -10,6 +10,9 @@ import TopBar from "./layout/TopBar"
 import GenreIndex from "./genre/GenreIndex.js"
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
 import UserProfile from "./UserProfile.js"
+import PodcastsIndex from "./podcasts/PodcastsIndex.js"
+import PodcastShowPage from "./podcasts/PodcastShowPage.js"
+import PodcastGenreShow from "./genre/PodcastGenreShow.js"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -36,7 +39,10 @@ const App = (props) => {
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+        <Route exact path="/podcasts" component={PodcastsIndex} />
+        <Route exact path="/podcasts/:id" component={PodcastShowPage} />
         <Route exact path="/genres" component={GenreIndex} />
+        <Route exact path="/genres/:id" component={PodcastGenreShow} />
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
       </Switch>
     </Router>
