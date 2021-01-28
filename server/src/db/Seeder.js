@@ -1,6 +1,5 @@
 import { connection } from "../boot.js"
-import PodcastSeeder from "./seeders/PodcastSeeder.js"
-import genreSeeder from './seeders/genreSeeder.js'
+import genreSeeder from "./seeders/genreSeeder.js"
 class Seeder {
   static async seed() {
     console.log("seeding Genres")
