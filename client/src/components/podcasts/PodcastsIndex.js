@@ -22,7 +22,12 @@ const PodcastsIndex = (props) => {
   }, [])
 
   const podcastTiles = podcasts.map((podcast) => {
-    return <PodcastTile key={podcast.id} podcast={podcast} />
+    return (
+      <PodcastTile 
+        key={podcast.id}
+        podcast={podcast} 
+      />
+    )
   })
 
   return <div>{podcastTiles}</div>

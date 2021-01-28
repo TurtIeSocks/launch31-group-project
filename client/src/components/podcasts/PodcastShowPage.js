@@ -3,7 +3,7 @@ import ErrorList from "../ErrorList"
 import translateServerErrors from "../../services/translateServerErrors"
 
 import PodcastReview from './PodcastReviewForm'
-import ReviewTile from './ReviewTile.js' 
+import ReviewTile from './ReviewTile.js'
 
 const PodcastShowPage = (props) => {
   const [podcast, setPodcast] = useState({
@@ -50,7 +50,7 @@ const PodcastShowPage = (props) => {
       } else {
         const body = await response.json()
         const updatedReviews = podcast.reviews.concat(body.review)
-        setPodcast({...podcast, reviews: updatedReviews })
+        setPodcast({ ...podcast, reviews: updatedReviews })
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -63,9 +63,9 @@ const PodcastShowPage = (props) => {
 
   const reviews = podcast.reviews.map(review => {
     return (
-      <ReviewTile 
-      key={review.id}
-      review={review}
+      <ReviewTile
+        key={review.id}
+        review={review}
       />
     )
   })
@@ -74,11 +74,11 @@ const PodcastShowPage = (props) => {
     <div>
       <h1>{podcast.name}</h1>
       <p>{podcast.description}</p>
+      <ErrorList errors={errors} />
+      <PodcastReview postReview={postPodcastReview} />
       <ul>
         {reviews}
       </ul>
-      <ErrorList errors={errors} />
-      <PodcastReview postReview={postPodcastReview}/>
     </div>
   )
 }

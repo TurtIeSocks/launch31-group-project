@@ -36,20 +36,21 @@ const PodcastReview = ({ postReview }) => {
       rating: ""
     })
   }
- 
+
   return (
     <div className="callout">
       <h1>Write a review</h1>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor='description'>
           <input
-          name="description"
-          onChange={handleInputChange}
-          value={podcastReviewRecord.description}
+            type='text'
+            name="description"
+            onChange={handleInputChange}
+            value={podcastReviewRecord.description}
           />
         </label>
 
-        <label>
+        <label htmlFor='rating'>
           <select
             name="rating"
             onChange={handleInputChange}

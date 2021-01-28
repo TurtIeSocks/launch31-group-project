@@ -10,9 +10,12 @@ podcastsRouter.get("/", async (req, res) => {
   try {
     const podcasts = await Podcast.query()
 
-    const serializedPodcasts = podcasts.map((podcast) => {
-      return PodcastSerializer.getSummary(podcast)
-    })
+    const serializedPodcasts = []
+
+    for (const podcast of podcasts) {
+      const serializedPodcast = await PodcastSerializer.getSummary(podcast)
+      serializedPodcasts.push(serializedPodcast)
+    }
 
     res.status(200).json({ podcasts: serializedPodcasts })
   } catch (error) {
@@ -24,8 +27,8 @@ podcastsRouter.get("/:id", async (req, res) => {
   try {
     const { id } = req.params
     const podcast = await Podcast.query().findById(id)
-    podcast.reviews = await podcast.$relatedQuery('reviews')
-    const serializedPodcast = PodcastSerializer.getSummary(podcast)
+    const serializedPodcast = await PodcastSerializer.getSummary(podcast)
+    
     res.status(200).json({ podcast: serializedPodcast })
   } catch (err) {
     res.status(500).json({ errors: err })
