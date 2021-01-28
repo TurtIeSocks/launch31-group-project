@@ -1,6 +1,10 @@
 import express from "express"
-import { Genre } from "../../../models/index.js"
+import objection from "objection"
+const { ValidationError } = objection
 import genrePodcastsRouter from "./genrePodcastsRouter.js"
+import { Genre } from "../../../models/index.js"
+import cleanUserInput from "../../../services/cleanUserInput.js"
+
 const genresRouter = new express.Router()
 
 genresRouter.use("/:genreId/podcasts", genrePodcastsRouter)
@@ -22,6 +26,20 @@ genresRouter.get("/:id", async (req, res) => {
     return res.status(200).json({ genre: genre })
   } catch (error) {
     return res.status(500).json({ error: error })
+  }
+})
+
+genresRouter.post("/", async (req, res) => {
+  const { body } = req
+  const formInput = cleanUserInput(body)
+  try {
+    const newGenre = await Genre.query().insertAndFetch(formInput)
+    return res.status(200).json({ genre: newGenre })
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data })
+    }
+    return res.status(500).json({ errors: error })
   }
 })
 

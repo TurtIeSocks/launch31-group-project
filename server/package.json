@@ -23,7 +23,8 @@
   "version": "0.0.1",
   "name": "launch31-group-project-server",
   "engines": {
-    "node": "^14.15"
+    "node": "^14.15",
+    "yarn": "1.22.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

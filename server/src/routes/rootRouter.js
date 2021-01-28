@@ -11,4 +11,5 @@ rootRouter.use("/api/v1/users", usersRouter)
 rootRouter.use("/api/v1/genres", genresRouter)
 rootRouter.use("/api/v1/podcasts", podcastsRouter)
 rootRouter.use("/", clientRouter)
+
 export default rootRouter

@@ -1,7 +1,7 @@
-import express from "express";
-import getClientIndexPath from "../config/getClientIndexPath.js";
+import express from "express"
+import getClientIndexPath from "../config/getClientIndexPath.js"
 
-const router = new express.Router();
+const router = new express.Router()
 
 const clientRoutes = [
   "/",
@@ -9,12 +9,14 @@ const clientRoutes = [
   "/users/new",
   "/podcasts",
   "/genres",
-  "podcasts/:id",
+  "/podcasts/:id",
   "/genres/:id",
-  "/podcasts/new",
-];
+  "/profile",
+  "/genres/new",
+  "podcasts/new",
+]
 router.get(clientRoutes, (req, res) => {
-  res.sendFile(getClientIndexPath());
-});
+  res.sendFile(getClientIndexPath())
+})
 
-export default router;
+export default router
