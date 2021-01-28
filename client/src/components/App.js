@@ -7,14 +7,14 @@ import "../assets/scss/main.scss"
 import RegistrationForm from "./registration/RegistrationForm"
 import SignInForm from "./authentication/SignInForm"
 import TopBar from "./layout/TopBar"
-import GenreIndex from "./genre/GenreIndex.js"
+import GenreIndex from "./genres/GenreIndex.js"
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
 import PodcastForm from "./podcasts/PodcastForm.js"
 import UserProfile from "./UserProfile.js"
 import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
-import PodcastGenreShow from "./genre/PodcastGenreShow.js"
-import GenreForm from "./genre/GenreForm.js"
+import PodcastGenreShow from "./genres/PodcastGenreShow.js"
+import GenreForm from "./genres/GenreForm.js"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
