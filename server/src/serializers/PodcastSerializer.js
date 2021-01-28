@@ -1,6 +1,6 @@
 class PodcastSerializer {
   static getSummary(podcast) {
-    const allowedAttributes = ["id", "name", "description"]
+    const allowedAttributes = ["id", "name", "description", "reviews"]
 
     let serializedPodcast = {}
 

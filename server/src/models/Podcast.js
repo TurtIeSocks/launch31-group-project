@@ -17,7 +17,7 @@ class Podcast extends Model {
   }
 
   static get relationMappings() {
-    const { Genre } = require("./index.js")
+    const { Genre, Review } = require("./index.js")
 
     return {
       genre: {
@@ -26,6 +26,14 @@ class Podcast extends Model {
         join: {
           from: "podcasts.genreId",
           to: "genres.id"
+        }
+      },
+      reviews: {
+        relation: Model.HasManyRelation,
+        modelClass: Review,
+        join: {
+          from: "podcasts.id",
+          to: "reviews.podcastId"
         }
       }
     }
