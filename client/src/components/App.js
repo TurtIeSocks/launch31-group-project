@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { hot } from "react-hot-loader/root"
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { hot } from "react-hot-loader/root";
 
-import getCurrentUser from "../services/getCurrentUser"
-import "../assets/scss/main.scss"
-import RegistrationForm from "./registration/RegistrationForm"
-import SignInForm from "./authentication/SignInForm"
-import TopBar from "./layout/TopBar"
-import PodcastsIndex from "./podcasts/PodcastsIndex.js"
-import GenreIndex from "./genre/GenreIndex.js"
-import PodcastShowPage from "./podcasts/PodcastShowPage.js"
-import PodcastGenreShow from './genre/PodcastGenreShow.js' 
-
+import getCurrentUser from "../services/getCurrentUser";
+import "../assets/scss/main.scss";
+import RegistrationForm from "./registration/RegistrationForm";
+import SignInForm from "./authentication/SignInForm";
+import TopBar from "./layout/TopBar";
+import PodcastsIndex from "./podcasts/PodcastsIndex.js";
+import GenreIndex from "./genre/GenreIndex.js";
+import PodcastShowPage from "./podcasts/PodcastShowPage.js";
+import PodcastGenreShow from "./genre/PodcastGenreShow.js";
+import PodcastForm from "./podcasts/PodcastForm.js";
 const App = (props) => {
-  const [currentUser, setCurrentUser] = useState(undefined)
+  const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     getCurrentUser()
       .then((user) => {
-        setCurrentUser(user)
+        setCurrentUser(user);
       })
       .catch(() => {
-        setCurrentUser(null)
-      })
-  }, [])
+        setCurrentUser(null);
+      });
+  }, []);
   return (
     <Router>
       <TopBar user={currentUser} />
@@ -36,9 +36,10 @@ const App = (props) => {
         <Route exact path="/podcasts/:id" component={PodcastShowPage} />
         <Route exact path="/genres" component={GenreIndex} />
         <Route exact path="/genres/:id" component={PodcastGenreShow} />
+        <Route exact path="/podcasts/new" component={PodcastForm} />
       </Switch>
     </Router>
-  )
-}
+  );
+};
 
-export default hot(App)
+export default hot(App);
