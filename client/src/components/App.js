@@ -7,13 +7,14 @@ import "../assets/scss/main.scss"
 import RegistrationForm from "./registration/RegistrationForm"
 import SignInForm from "./authentication/SignInForm"
 import TopBar from "./layout/TopBar"
-import GenreIndex from "./genre/GenreIndex.js"
+import GenreIndex from "./genres/GenreIndex.js"
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
+import PodcastForm from "./podcasts/PodcastForm.js"
 import UserProfile from "./UserProfile.js"
 import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
-import PodcastGenreShow from "./genre/PodcastGenreShow.js"
-import GenreForm from './genre/GenreForm.js' 
+import PodcastGenreShow from "./genres/PodcastGenreShow.js"
+import GenreForm from "./genres/GenreForm.js"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -41,6 +42,7 @@ const App = (props) => {
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/podcasts" component={PodcastsIndex} />
+        <Route exact path="/podcasts/new" component={PodcastForm} />
         <Route exact path="/podcasts/:id" component={PodcastShowPage} />
         <Route exact path="/genres" component={GenreIndex} />
         <Route exact path="/genres/new" component={GenreForm} />

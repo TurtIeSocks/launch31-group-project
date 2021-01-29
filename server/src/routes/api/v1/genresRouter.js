@@ -1,29 +1,31 @@
-import express from 'express'
-import objection from 'objection'
+import express from "express"
+import objection from "objection"
 const { ValidationError } = objection
-
-import { Genre } from '../../../models/index.js'
+import genrePodcastsRouter from "./genrePodcastsRouter.js"
+import { Genre } from "../../../models/index.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const genresRouter = new express.Router()
 
-genresRouter.get('/', async (req, res)=> {
+genresRouter.use("/:genreId/podcasts", genrePodcastsRouter)
+
+genresRouter.get("/", async (req, res) => {
   try {
     const genres = await Genre.query()
-    return res.status(200).json({genres: genres})
+    return res.status(200).json({ genres: genres })
   } catch (error) {
-    return res.status(500).json({error: error})
+    return res.status(500).json({ error: error })
   }
 })
 
-genresRouter.get('/:id', async (req, res)=> {
+genresRouter.get("/:id", async (req, res) => {
   try {
-    const {id} = req.params
+    const { id } = req.params
     const genre = await Genre.query().findById(id)
     genre.podcasts = await genre.$relatedQuery("podcasts")
-    return res.status(200).json({genre: genre})
+    return res.status(200).json({ genre: genre })
   } catch (error) {
-    return res.status(500).json({error: error})
+    return res.status(500).json({ error: error })
   }
 })
 
@@ -33,7 +35,7 @@ genresRouter.post("/", async (req, res) => {
   try {
     const newGenre = await Genre.query().insertAndFetch(formInput)
     return res.status(200).json({ genre: newGenre })
-  } catch(error) {
+  } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })
     }
@@ -41,4 +43,4 @@ genresRouter.post("/", async (req, res) => {
   }
 })
 
-export default genresRouter 
+export default genresRouter
