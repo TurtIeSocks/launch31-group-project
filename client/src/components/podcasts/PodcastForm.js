@@ -18,25 +18,22 @@ const PodcastForm = (props) => {
     })
   }
 
-  // const fieldReset = () => {
-  //   setPodcastRecord({
-  //     name: "",
-  //     description: "",
-  //   })
-  // }
+  const fieldReset = () => {
+    setPodcastRecord({
+      name: "",
+      description: "",
+    })
+  }
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
     addPodcast(podcastRecord)
-    clearForm()
+    fieldReset()
   }
 
   const clearForm = (event) => {
     event.preventDefault()
-      setPodcastRecord({
-      name: "",
-      description: "",
-    })
+      fieldReset()
   }
 
   const genreId = props.genreId
@@ -80,7 +77,12 @@ const PodcastForm = (props) => {
         <label htmlFor="name">
         Podcast Name:
         </label>
-          <input type="text" id="name" name="name" onChange={handleInputChange} value={podcastRecord.name} />
+          <input type="text" 
+          id="name" 
+          name="name" 
+          onChange={handleInputChange} 
+          value={podcastRecord.name} 
+          />
         <label htmlFor="description">
         Podcast Description:
         </label>
