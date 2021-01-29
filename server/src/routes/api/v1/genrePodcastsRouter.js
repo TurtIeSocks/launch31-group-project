@@ -21,4 +21,5 @@ genrePodcastsRouter.post("/", async (req, res) => {
     return res.status(500).json({ error: error })
   }
 })
+
 export default genrePodcastsRouter

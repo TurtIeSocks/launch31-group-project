@@ -18,24 +18,27 @@ const PodcastForm = (props) => {
     })
   }
 
-  const fieldReset = () => {
-    setPodcastRecord({
+  // const fieldReset = () => {
+  //   setPodcastRecord({
+  //     name: "",
+  //     description: "",
+  //   })
+  // }
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault()
+    addPodcast(podcastRecord)
+    clearForm()
+  }
+
+  const clearForm = (event) => {
+    event.preventDefault()
+      setPodcastRecord({
       name: "",
       description: "",
     })
   }
 
-  const onSubmitHandler = (event) => {
-    event.preventDefault()
-    addPodcast(podcastRecord)
-    fieldReset()
-  }
-
-  const clearForm = (event) => {
-    event.preventDefault()
-    fieldReset()
-    
-  }
   const genreId = props.genreId
   const addPodcast = async (podcastPayload) => {
     try {
@@ -74,14 +77,17 @@ const PodcastForm = (props) => {
       <h1>Add a New Podcast</h1>
       <ErrorList errors={errors} />
       <form className="callout" onSubmit={onSubmitHandler}>
-        <label htmlFor="name" />
+        <label htmlFor="name">
         Podcast Name:
-          <input type="text" name="name" onChange={handleInputChange} value={podcastRecord.name} />
-        <label htmlFor="description" />
+        </label>
+          <input type="text" id="name" name="name" onChange={handleInputChange} value={podcastRecord.name} />
+        <label htmlFor="description">
         Podcast Description:
+        </label>
           <input
           type="text"
           name="description"
+          id="description"
           onChange={handleInputChange}
           value={podcastRecord.description}
           />
@@ -95,4 +101,5 @@ const PodcastForm = (props) => {
     </div>
   )
 }
+
 export default PodcastForm
