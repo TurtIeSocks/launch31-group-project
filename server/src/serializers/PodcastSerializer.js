@@ -1,5 +1,5 @@
 class PodcastSerializer {
-  static getSummary(podcast) {
+  static async getSummary(podcast) {
     const allowedAttributes = ["id", "name", "description"]
 
     let serializedPodcast = {}
@@ -7,6 +7,8 @@ class PodcastSerializer {
     for (const attribute of allowedAttributes) {
       serializedPodcast[attribute] = podcast[attribute]
     }
+    serializedPodcast.reviews = await podcast.$relatedQuery('reviews')
+    
     return serializedPodcast
   }
 }
