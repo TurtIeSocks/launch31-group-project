@@ -27,7 +27,7 @@ podcastsRouter.get("/:id", async (req, res) => {
   try {
     const { id } = req.params
     const podcast = await Podcast.query().findById(id)
-    let serializedPodcast = await PodcastSerializer.getSummary(podcast)
+    const serializedPodcast = await PodcastSerializer.getSummary(podcast)
     res.status(200).json({ podcast: serializedPodcast })
   } catch (err) {
     res.status(500).json({ errors: err })

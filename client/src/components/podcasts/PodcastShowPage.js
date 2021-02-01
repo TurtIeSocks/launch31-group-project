@@ -8,9 +8,9 @@ import ReviewTile from './ReviewTile.js'
 const PodcastShowPage = (props) => {
   const [podcast, setPodcast] = useState({
     name: "",
-    description: ""
+    description: "",
+    reviews: []
   })
-  const [reviews, setReviews] = useState([])
   const [errors, setErrors] = useState([])
 
   const { id: podcastId } = props.match.params
@@ -23,8 +23,6 @@ const PodcastShowPage = (props) => {
       }
       const body = await response.json()
       setPodcast(body.podcast)
-      setReviews(body.podcast.reviews)
-      
     } catch (error) {
       console.error(error.message)
     }
@@ -51,7 +49,10 @@ const PodcastShowPage = (props) => {
         }
       } else {
         const body = await response.json()
-        setReviews([...reviews, body.review])
+        setPodcast({
+          ...podcast,
+          reviews: [...podcast.reviews, body.review]
+        })
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -62,7 +63,7 @@ const PodcastShowPage = (props) => {
     fetchPodcast()
   }, [])
 
-  const allReviews = reviews.map(review => {
+  const reviews = podcast.reviews.map(review => {
     return (
       <ReviewTile
         key={review.id}
@@ -78,7 +79,7 @@ const PodcastShowPage = (props) => {
       <ErrorList errors={errors} />
       <PodcastReviewForm postReview={postPodcastReview} />
       <div>
-        {allReviews}
+        {reviews}
       </div>
     </div>
   )

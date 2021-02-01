@@ -11,7 +11,7 @@ class PodcastSerializer {
     }
 
     let reviews = await podcast.$relatedQuery('reviews')
-    serializedPodcast.reviews = await ReviewSerializer.updateData(reviews)
+    serializedPodcast.reviews = await ReviewSerializer.getUser(reviews)
     return serializedPodcast
   }
 }
