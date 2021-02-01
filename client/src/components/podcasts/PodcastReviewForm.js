@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 const ratings = ['', '★', '★ ★', '★ ★ ★', '★ ★ ★ ★', '★ ★ ★ ★ ★']
 
 const PodcastReview = ({ postReview }) => {
-
   const [podcastReviewRecord, setPodcastReviewRecord] = useState({
     description: "",
     rating: ""
@@ -24,17 +23,22 @@ const PodcastReview = ({ postReview }) => {
     })
   }
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    postReview(podcastReviewRecord)
-    clearForm()
-  }
-
-  const clearForm = event => {
+  const resetFields = ()=> {
     setPodcastReviewRecord({
       description: "",
       rating: ""
     })
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    postReview(podcastReviewRecord)
+    resetFields()
+  }
+
+  const clearForm = event => {
+    event.preventDefault()
+    resetFields()
   }
 
   return (

@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react"
 import ErrorList from "../ErrorList"
 import translateServerErrors from "../../services/translateServerErrors"
 
-import PodcastReview from './PodcastReviewForm'
+import PodcastReviewForm from './PodcastReviewForm'
 import ReviewTile from './ReviewTile.js'
 
 const PodcastShowPage = (props) => {
   const [podcast, setPodcast] = useState({
     name: "",
-    description: "",
-    reviews: []
+    description: ""
   })
+  const [reviews, setReviews] = useState([])
   const [errors, setErrors] = useState([])
 
   const { id: podcastId } = props.match.params
@@ -23,6 +23,8 @@ const PodcastShowPage = (props) => {
       }
       const body = await response.json()
       setPodcast(body.podcast)
+      setReviews(body.podcast.reviews)
+      
     } catch (error) {
       console.error(error.message)
     }
@@ -49,8 +51,7 @@ const PodcastShowPage = (props) => {
         }
       } else {
         const body = await response.json()
-        const updatedReviews = podcast.reviews.concat(body.review)
-        setPodcast({ ...podcast, reviews: updatedReviews })
+        setReviews([...reviews, body.review])
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -61,7 +62,7 @@ const PodcastShowPage = (props) => {
     fetchPodcast()
   }, [])
 
-  const reviews = podcast.reviews.map(review => {
+  const allReviews = reviews.map(review => {
     return (
       <ReviewTile
         key={review.id}
@@ -75,10 +76,10 @@ const PodcastShowPage = (props) => {
       <h1>{podcast.name}</h1>
       <p>{podcast.description}</p>
       <ErrorList errors={errors} />
-      <PodcastReview postReview={postPodcastReview} />
-      <ul>
-        {reviews}
-      </ul>
+      <PodcastReviewForm postReview={postPodcastReview} />
+      <div>
+        {allReviews}
+      </div>
     </div>
   )
 }
