@@ -1,11 +1,13 @@
 import React from 'react'
 
 const ReviewTile = props => {
+  const { user, rating, description } = props.review
   return (
-    <li className="callout primary">
-      <p>{props.review.rating}</p>
-      <p>{props.review.description}</p>
-    </li>
+    <div className="callout primary">
+      <p>{user.username}</p>
+      <p>{rating}</p>
+      <p>{description}</p>
+    </div>
   )
 }
 
