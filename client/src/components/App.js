@@ -37,7 +37,7 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2 className="welcome-header">Pod Classed: Classify your Pod</h2>
+          <h2 className="welcome-header">Pod Classed: Classify Your Pod</h2>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
