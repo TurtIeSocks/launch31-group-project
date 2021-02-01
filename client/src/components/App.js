@@ -37,15 +37,15 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2>Hello from react</h2>
+          <h2 className="welcome-header">Pod Classed: Classify your Pod</h2>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/podcasts" component={PodcastsIndex} />
-        <Route exact path="/podcasts/new" component={PodcastForm} />
+        <AuthenticatedRoute exact path="/podcasts/new" component={PodcastForm} user={currentUser} />
         <Route exact path="/podcasts/:id" component={PodcastShowPage} />
         <Route exact path="/genres" component={GenreIndex} />
-        <Route exact path="/genres/new" component={GenreForm} />
+        <AuthenticatedRoute exact path="/genres/new" component={GenreForm} user={currentUser} />
         <Route exact path="/genres/:id" component={PodcastGenreShow} />
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
       </Switch>

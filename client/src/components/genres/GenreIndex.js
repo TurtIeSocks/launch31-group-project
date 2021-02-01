@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import GenreTile from './GenreTile.js'
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import GenreTile from "./GenreTile.js"
 
-const GenreIndex = props => {
+const GenreIndex = (props) => {
   const [genres, setGenres] = useState([])
 
   const getGenres = async () => {
@@ -11,7 +11,7 @@ const GenreIndex = props => {
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
-        throw (error)
+        throw error
       }
       const body = await response.json()
       setGenres(body.genres)
@@ -24,21 +24,16 @@ const GenreIndex = props => {
     getGenres()
   }, [])
 
-  const genreItems = genres.map(genre => {
-    return (
-      <GenreTile
-        key={genre.id}
-        id={genre.id}
-        name={genre.name}
-      />
-    )
+  const genreItems = genres.map((genre) => {
+    return <GenreTile key={genre.id} id={genre.id} name={genre.name} />
   })
 
-  return(
-    <div>
+  return (
+    <div className="text-center">
+      <h1 className="header">Podcast Genres</h1>
       {genreItems}
-      <div className='callout'>
-        <Link to='/genres/new'>Submit a New Genre!</Link>
+      <div className="callout secondary small">
+        <Link to="/genres/new">Submit a New Genre!</Link>
       </div>
     </div>
   )

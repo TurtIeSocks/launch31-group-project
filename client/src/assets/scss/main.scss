@@ -12,3 +12,33 @@
   -moz-tab-size: 4;
   tab-size: 4;
 }
+
+.callout {
+  width: 60vw;
+  margin: 30px auto;
+}
+
+.header {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+h1 {
+  text-align: center;
+}
+h2 {
+  text-align: center;
+}
+.button {
+  margin: 10px;
+}
+.welcome-header {
+  color: black;
+}
+.button-text {
+  color: #1b4965;
+}
+body {
+  background-color: #bee9e8;
+}
+.callout primary h2 a {
+  color: black;
+}

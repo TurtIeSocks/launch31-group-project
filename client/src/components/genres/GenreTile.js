@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react"
+import { Link } from "react-router-dom"
 
-const GenreTile = props => {
+const GenreTile = (props) => {
   return (
-    <div className='callout'>
+    <div className="callout primary">
       <h2>
         <Link to={`/genres/${props.id}`}>{props.name}</Link>
       </h2>

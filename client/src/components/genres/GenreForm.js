@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
-import ErrorList from '../ErrorList.js' 
-import translateServerErrors from '../../services/translateServerErrors.js' 
+import React, { useState } from "react"
+import { Redirect } from "react-router-dom"
+import ErrorList from "../ErrorList.js"
+import translateServerErrors from "../../services/translateServerErrors.js"
 
-const NewGenreForm = props => {
+const NewGenreForm = (props) => {
   const [newGenre, setNewGenre] = useState({
-    name: ''
+    name: "",
   })
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -13,27 +13,27 @@ const NewGenreForm = props => {
   const postGenre = async (newGenreData) => {
     try {
       const response = await fetch(`/api/v1/genres`, {
-        method: 'POST',
+        method: "POST",
         headers: new Headers({
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         }),
-        body: JSON.stringify(newGenreData)
+        body: JSON.stringify(newGenreData),
       })
       if (!response.ok) {
-          if(response.status === 422) {
-            const body = await response.json()
-            const newErrors = translateServerErrors(body.errors)
-            return setErrors(newErrors)
-          } else {
-            const errorMessage = `${response.status} (${response.statusText})`
-            const error = new Error(errorMessage)
-            throw(error)
-          }
+        if (response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
         } else {
-          setErrors([])
-          setShouldRedirect(true)
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw error
         }
-    } catch(error) {
+      } else {
+        setErrors([])
+        setShouldRedirect(true)
+      }
+    } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
@@ -42,10 +42,10 @@ const NewGenreForm = props => {
     return <Redirect to="/genres" />
   }
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setNewGenre({
       ...newGenre,
-      [event.currentTarget.name]: event.currentTarget.value
+      [event.currentTarget.name]: event.currentTarget.value,
     })
   }
 
@@ -58,29 +58,24 @@ const NewGenreForm = props => {
   const clearForm = (event) => {
     event.preventDefault()
     setNewGenre({
-      name: ''
+      name: "",
     })
   }
 
   return (
-    <div className='callout'>
+    <div>
       <h1>Add a New Genre</h1>
       <ErrorList errors={errors} />
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit} className="callout">
         <label>
           Name:
-          <input
-            type='text'
-            name='name'
-            onChange={handleInputChange}
-            value={newGenre.name}
-          />
+          <input type="text" name="name" onChange={handleInputChange} value={newGenre.name} />
         </label>
-        <div className='button-group'>
+        <div className="button-group">
           <button className="button" onClick={clearForm}>
             Clear
           </button>
-          <input className='button' type='submit' value='Submit' />
+          <input className="button" type="submit" value="Submit" />
         </div>
       </form>
     </div>
