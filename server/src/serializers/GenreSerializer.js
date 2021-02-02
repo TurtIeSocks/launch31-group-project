@@ -7,7 +7,8 @@ class GenreSerializer {
       serializedGenre[attribute] = genre[attribute]
     }
 
-      serializedGenre.podcasts = await genre.$relatedQuery("podcasts")
+    serializedGenre.podcasts = await genre.$relatedQuery("podcasts")
+
     return serializedGenre
   }
 }

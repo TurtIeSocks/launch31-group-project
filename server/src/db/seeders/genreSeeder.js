@@ -18,7 +18,7 @@ class genreSeeder{
     await trueCrime.$relatedQuery('podcasts').insert({
       name: 'Cat solves crime',
       description: 'Detective Kerrin Meow solves murders',
-     userId: user.id 
+      userId: user.id 
     })
     await news.$relatedQuery('podcasts').insert({
       name: 'FrogChamp',

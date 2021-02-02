@@ -78,7 +78,7 @@ const GenreEdit = (props) => {
 
   const clearForm = (event) => {
     event.preventDefault()
-      fieldReset()
+    fieldReset()
   }
 
   if (shouldRedirect) {
@@ -91,14 +91,14 @@ const GenreEdit = (props) => {
       <ErrorList errors={errors} />
       <form className="callout" onSubmit={onSubmitHandler}>
         <label htmlFor="name">
-        Podcast Name:
+          Podcast Name:
         </label>
-          <input type="text" 
-          id="name" 
-          name="name" 
-          onChange={handleInputChange} 
-          value={genreRecord.name} 
-          />
+        <input type="text"
+          id="name"
+          name="name"
+          onChange={handleInputChange}
+          value={genreRecord.name}
+        />
         <div className="button-group">
           <button className="button" onClick={clearForm}>
             Clear

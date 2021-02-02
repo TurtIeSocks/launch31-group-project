@@ -9,13 +9,14 @@ const PodcastTile = ({ podcast, user }) => {
       <div>
         <Link to={`/podcasts/${podcast.id}/edit`} className="button">
           Edit
-    </Link>
+        </Link>
         <Link to={`/podcasts/${podcast.id}/delete`} className="button">
           Delete
-    </Link>
+        </Link>
       </div>
     )
   }
+
   return (
     <div className='callout primary'>
       <Link to={`/podcasts/${podcast.id}`}>
