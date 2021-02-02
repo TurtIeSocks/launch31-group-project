@@ -1,6 +1,6 @@
 import express from "express"
 
-import Podcast from "../../../models/Podcast.js"
+import { Podcast } from "../../../models/index.js"
 import PodcastSerializer from "../../../serializers/PodcastSerializer.js"
 import podcastReviewsRouter from './podcastReviewsRouter.js' 
 
@@ -28,7 +28,6 @@ podcastsRouter.get("/:id", async (req, res) => {
     const { id } = req.params
     const podcast = await Podcast.query().findById(id)
     const serializedPodcast = await PodcastSerializer.getSummary(podcast)
-    
     res.status(200).json({ podcast: serializedPodcast })
   } catch (err) {
     res.status(500).json({ errors: err })

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import ErrorList from "../ErrorList"
 import translateServerErrors from "../../services/translateServerErrors"
 
-import PodcastReview from './PodcastReviewForm'
+import PodcastReviewForm from './PodcastReviewForm'
 import ReviewTile from './ReviewTile.js'
 
 const PodcastShowPage = (props) => {
@@ -49,8 +49,10 @@ const PodcastShowPage = (props) => {
         }
       } else {
         const body = await response.json()
-        const updatedReviews = podcast.reviews.concat(body.review)
-        setPodcast({ ...podcast, reviews: updatedReviews })
+        setPodcast({
+          ...podcast,
+          reviews: [...podcast.reviews, body.review]
+        })
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -75,10 +77,10 @@ const PodcastShowPage = (props) => {
       <h1>{podcast.name}</h1>
       <p>{podcast.description}</p>
       <ErrorList errors={errors} />
-      <PodcastReview postReview={postPodcastReview} />
-      <ul>
+      <PodcastReviewForm postReview={postPodcastReview} />
+      <div>
         {reviews}
-      </ul>
+      </div>
     </div>
   )
 }

@@ -1,3 +1,5 @@
+import ReviewSerializer from "./ReviewSerializer.js"
+
 class PodcastSerializer {
   static async getSummary(podcast) {
     const allowedAttributes = ["id", "name", "description"]
@@ -7,8 +9,9 @@ class PodcastSerializer {
     for (const attribute of allowedAttributes) {
       serializedPodcast[attribute] = podcast[attribute]
     }
-    serializedPodcast.reviews = await podcast.$relatedQuery('reviews')
-    
+
+    let reviews = await podcast.$relatedQuery('reviews')
+    serializedPodcast.reviews = await ReviewSerializer.getUser(reviews)
     return serializedPodcast
   }
 }

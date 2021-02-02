@@ -19,7 +19,7 @@ const UserProfile = ({ user }) => {
 
   return (
     <div>
-      <h1>{currentUser.email}</h1>
+      <h1>{currentUser.username}</h1>
     </div>
   )
 }

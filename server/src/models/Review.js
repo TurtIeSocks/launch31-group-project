@@ -10,12 +10,13 @@ class Review extends Model {
       required: ["description", "rating"],
       properties: {
         description: { type: "string", minLength: 1 },
-        rating: { type: "string", minLength: 1}
+        rating: { type: "string", minLength: 1},
+        userId: { type: ["string", "integer"] }
       }
     }
   }
   static get relationMappings(){
-    const { Podcast } = require("./index.js")
+    const { Podcast, User } = require("./index.js")
 
     return {
       podcast: {
@@ -24,6 +25,14 @@ class Review extends Model {
         join: {
           from: "reviews.podcastId",
           to: "podcasts.id"
+        }
+      },
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: "reviews.userId",
+          to: "users.id"
         }
       }
     }

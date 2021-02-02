@@ -58,7 +58,7 @@ const NewGenreForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     postGenre(newGenre)
-    clearForm()
+    resetFields()
   }
 
   const clearForm = (event) => {

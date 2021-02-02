@@ -30,7 +30,11 @@ const PodcastsIndex = (props) => {
     )
   })
 
-  return <div>{podcastTiles}</div>
+  return (
+    <div>
+      {podcastTiles}
+    </div>
+  )
 }
 
 export default PodcastsIndex
