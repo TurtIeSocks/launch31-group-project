@@ -15,6 +15,16 @@ const TopBar = ({ user }) => {
   ]
 
   const authenticatedListItems = [
+    <li key="add-genre">
+      <Link to="/genres/new" type="button" className="button">
+        Add Genre
+      </Link>
+    </li>,
+    <li key="add-podcast">
+      <Link to="/podcasts/new" type="button" className="button">
+        Add Podcast
+      </Link>
+    </li>,
     <li key="sign-out">
       <SignOutButton />
     </li>,
@@ -24,10 +34,22 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">App</li>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to ='/genres'>Genres</Link></li>
-          <li><Link to ='/podcasts'>Podcasts</Link></li>
+          <li className="menu-text">Pod Classed</li>
+          <li>
+            <Link to="/" className="button-text">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/genres" className="button-text">
+              Genres
+            </Link>
+          </li>
+          <li>
+            <Link to="/podcasts" className="button-text">
+              Podcasts
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="top-bar-right">
