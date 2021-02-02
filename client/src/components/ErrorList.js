@@ -7,11 +7,19 @@ const ErrorList = (props) => {
     let index = 0
     const listItems = errantFields.map((field) => {
       index++
+      if (field==="Genre Id") {
+        return (
+          <li key={index}>
+            Genre is a required field
+          </li>
+        )
+      } else {
       return (
         <li key={index}>
           {_.capitalize(field)} {props.errors[field]}
         </li>
-      )
+        )
+      }
     })
     return (
       <div className="callout alert">

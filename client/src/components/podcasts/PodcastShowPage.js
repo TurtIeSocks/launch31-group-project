@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import ErrorList from "../ErrorList"
 import translateServerErrors from "../../services/translateServerErrors"
-
 import PodcastReviewForm from './PodcastReviewForm'
 import ReviewTile from './ReviewTile.js'
+import { withRouter } from "react-router-dom"
 
 const PodcastShowPage = (props) => {
   const [podcast, setPodcast] = useState({
@@ -63,6 +63,16 @@ const PodcastShowPage = (props) => {
     fetchPodcast()
   }, [])
 
+  let submitNewReviewForm = ''
+  if (props.user) {
+    submitNewReviewForm = (
+      <div>
+        <ErrorList errors={errors} />
+        <PodcastReviewForm postReview={postPodcastReview} />
+      </div>
+    )
+  }
+
   const reviews = podcast.reviews.map(review => {
     return (
       <ReviewTile
@@ -76,8 +86,7 @@ const PodcastShowPage = (props) => {
     <div>
       <h1>{podcast.name}</h1>
       <p>{podcast.description}</p>
-      <ErrorList errors={errors} />
-      <PodcastReviewForm postReview={postPodcastReview} />
+      {submitNewReviewForm}
       <div>
         {reviews}
       </div>
@@ -85,4 +94,4 @@ const PodcastShowPage = (props) => {
   )
 }
 
-export default PodcastShowPage
+export default withRouter(PodcastShowPage)

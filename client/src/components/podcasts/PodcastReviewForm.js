@@ -70,7 +70,6 @@ const PodcastReview = ({ postReview }) => {
       </form>
     </div>
   )
-
 }
 
 export default PodcastReview

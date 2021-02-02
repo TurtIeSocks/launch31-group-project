@@ -3,71 +3,39 @@ import { Redirect } from "react-router-dom"
 import ErrorList from "../ErrorList.js"
 import translateServerErrors from "../../services/translateServerErrors.js"
 
-const PodcastForm = (props) => {
+const PodcastEdit = (props) => {
   const [podcastRecord, setPodcastRecord] = useState({
     name: "",
     description: "",
     genreId: ""
   })
-  const [genres, setGenres] = useState([])
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
-  const fetchGenres = async () => {
+  const { id: podcastId } = props.match.params
+
+  const fetchPodcast = async () => {
     try {
-      const response = await fetch(`/api/v1/genres`)
+      const response = await fetch(`/api/v1/podcasts/${podcastId}`)
       if (!response.ok) {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setGenres([{name: "", id: ""}, ...body.genres])
+      const podcast = body.podcast
+      if (!podcast.description) {
+        setPodcastRecord({ ...podcast, description: "" })
+      } else {
+        setPodcastRecord(body.podcast)
+      }
     } catch (error) {
       console.error(error.message)
     }
   }
 
-  useEffect(() => {
-    fetchGenres()
-  }, [])
-
-  const availGenres = genres.map(genre => {
-    return (
-      <option key={genre.id} value={genre.id}>
-        {genre.name}
-      </option>
-    )
-  })
-
-  const handleInputChange = (event) => {
-    setPodcastRecord({
-      ...podcastRecord,
-      [event.currentTarget.name]: event.currentTarget.value,
-    })
-  }
-
-  const fieldReset = () => {
-    setPodcastRecord({
-      name: "",
-      description: "",
-      genreId: ""
-    })
-  }
-
-  const onSubmitHandler = (event) => {
-    event.preventDefault()
-    addPodcast(podcastRecord)
-    fieldReset()
-  }
-
-  const clearForm = (event) => {
-    event.preventDefault()
-    fieldReset()
-  }
-
-  const addPodcast = async (podcastPayload) => {
+  const editPodcast = async (podcastPayload) => {
     try {
-      const response = await fetch(`/api/v1/podcasts`, {
-        method: "POST",
+      const response = await fetch(`/api/v1/podcasts/${podcastId}`, {
+        method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
@@ -92,13 +60,43 @@ const PodcastForm = (props) => {
     }
   }
 
+  useEffect(() => {
+    fetchPodcast()
+  }, [])
+
+  const handleInputChange = (event) => {
+    setPodcastRecord({
+      ...podcastRecord,
+      [event.currentTarget.name]: event.currentTarget.value,
+    })
+  }
+
+  const fieldReset = () => {
+    setPodcastRecord({
+      name: "",
+      description: "",
+      genreId: ""
+    })
+  }
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault()
+    editPodcast(podcastRecord)
+    fieldReset()
+  }
+
+  const clearForm = (event) => {
+    event.preventDefault()
+    fieldReset()
+  }
+
   if (shouldRedirect) {
     return <Redirect to="/podcasts" />
   }
 
   return (
     <div>
-      <h1>Add a New Podcast</h1>
+      <h1>Edit Podcast</h1>
       <ErrorList errors={errors} />
       <form className="callout" onSubmit={onSubmitHandler}>
         <label htmlFor="name">
@@ -110,7 +108,6 @@ const PodcastForm = (props) => {
           onChange={handleInputChange}
           value={podcastRecord.name}
         />
-
         <label htmlFor="description">
           Podcast Description:
         </label>
@@ -121,16 +118,6 @@ const PodcastForm = (props) => {
           onChange={handleInputChange}
           value={podcastRecord.description}
         />
-
-        <label htmlFor="genreId">
-          <select
-            name="genreId"
-            onChange={handleInputChange}
-            value={podcastRecord.genreId}>
-            {availGenres}
-          </select>
-        </label>
-
         <div className="button-group">
           <button className="button" onClick={clearForm}>
             Clear
@@ -142,4 +129,4 @@ const PodcastForm = (props) => {
   )
 }
 
-export default PodcastForm
+export default PodcastEdit

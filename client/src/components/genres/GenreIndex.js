@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import GenreTile from "./GenreTile.js"
 
 const GenreIndex = (props) => {
@@ -25,16 +24,18 @@ const GenreIndex = (props) => {
   }, [])
 
   const genreItems = genres.map((genre) => {
-    return <GenreTile key={genre.id} id={genre.id} name={genre.name} />
+    return (
+      <GenreTile
+        key={genre.id}
+        genre={genre}
+        user={props.user}
+      />)
   })
 
   return (
     <div className="text-center">
       <h1 className="header">Podcast Genres</h1>
       {genreItems}
-      <div className="callout secondary small">
-        <Link to="/genres/new">Submit a New Genre!</Link>
-      </div>
     </div>
   )
 }
