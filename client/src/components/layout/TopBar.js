@@ -11,7 +11,7 @@ const TopBar = ({ user }) => {
       <Link to="/users/new" className="button">
         Sign Up
       </Link>
-    </li>,
+    </li>
   ]
 
   const authenticatedListItems = [
@@ -27,7 +27,7 @@ const TopBar = ({ user }) => {
     </li>,
     <li key="sign-out">
       <SignOutButton />
-    </li>,
+    </li>
   ]
 
   return (

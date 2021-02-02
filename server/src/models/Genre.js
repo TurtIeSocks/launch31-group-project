@@ -10,13 +10,14 @@ class Genre extends Model {
       type: "object",
       required: ["name"],
       properties: {
-        name: { type: "string", minLength: 1 }
+        name: { type: "string", minLength: 1 },
+        userId: { type: ["string, integer"]}
       }
     }
   }
   
   static get relationMappings() {
-    const { Podcast } = require('./index.js')
+    const { Podcast, User } = require('./index.js')
 
     return {
       podcasts: {
@@ -25,6 +26,14 @@ class Genre extends Model {
         join: {
           from: "genres.id",
           to: "podcasts.genreId"
+        }
+      },
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: "genres.userId",
+          to: "users.id"
         }
       }
     }

@@ -8,16 +8,18 @@ class Podcast extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["name"],
+      required: ["name", "genreId"],
       properties: {
         name: { type: "string", minLength: 1 },
-        description: { type: "string" }
+        description: { type: "string" },
+        genreId: { type: ["string", "integer"] },
+        userId: { type: ["string, integer"]}
       }
     }
   }
 
   static get relationMappings() {
-    const { Genre, Review } = require("./index.js")
+    const { Genre, Review, User } = require("./index.js")
 
     return {
       genre: {
@@ -34,6 +36,14 @@ class Podcast extends Model {
         join: {
           from: "podcasts.id",
           to: "reviews.podcastId"
+        }
+      },
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: "podcasts.userId",
+          to: "users.id"
         }
       }
     }

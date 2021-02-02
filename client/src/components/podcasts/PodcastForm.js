@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
 import ErrorList from "../ErrorList.js"
 import translateServerErrors from "../../services/translateServerErrors.js"
@@ -7,9 +7,36 @@ const PodcastForm = (props) => {
   const [podcastRecord, setPodcastRecord] = useState({
     name: "",
     description: "",
+    genreId: ""
   })
+  const [genres, setGenres] = useState([])
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
+
+  const fetchGenres = async () => {
+    try {
+      const response = await fetch(`/api/v1/genres`)
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      setGenres([{name: "", id: ""}, ...body.genres])
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    fetchGenres()
+  }, [])
+
+  const availGenres = genres.map(genre => {
+    return (
+      <option key={genre.id} value={genre.id}>
+        {genre.name}
+      </option>
+    )
+  })
 
   const handleInputChange = (event) => {
     setPodcastRecord({
@@ -22,6 +49,7 @@ const PodcastForm = (props) => {
     setPodcastRecord({
       name: "",
       description: "",
+      genreId: ""
     })
   }
 
@@ -33,13 +61,12 @@ const PodcastForm = (props) => {
 
   const clearForm = (event) => {
     event.preventDefault()
-      fieldReset()
+    fieldReset()
   }
 
-  const genreId = props.genreId
   const addPodcast = async (podcastPayload) => {
     try {
-      const response = await fetch(`/api/v1/genres/${genreId}/podcasts`, {
+      const response = await fetch(`/api/v1/podcasts`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -75,24 +102,35 @@ const PodcastForm = (props) => {
       <ErrorList errors={errors} />
       <form className="callout" onSubmit={onSubmitHandler}>
         <label htmlFor="name">
-        Podcast Name:
+          Podcast Name:
         </label>
-          <input type="text" 
-          id="name" 
-          name="name" 
-          onChange={handleInputChange} 
-          value={podcastRecord.name} 
-          />
+        <input type="text"
+          id="name"
+          name="name"
+          onChange={handleInputChange}
+          value={podcastRecord.name}
+        />
+
         <label htmlFor="description">
-        Podcast Description:
+          Podcast Description:
         </label>
-          <input
+        <input
           type="text"
           name="description"
           id="description"
           onChange={handleInputChange}
           value={podcastRecord.description}
-          />
+        />
+
+        <label htmlFor="genreId">
+          <select
+            name="genreId"
+            onChange={handleInputChange}
+            value={podcastRecord.genreId}>
+            {availGenres}
+          </select>
+        </label>
+
         <div className="button-group">
           <button className="button" onClick={clearForm}>
             Clear

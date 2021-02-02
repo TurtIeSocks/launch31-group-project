@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import ErrorList from "../ErrorList"
 import translateServerErrors from "../../services/translateServerErrors"
-
+import getCurrentUser from "../../services/getCurrentUser"
 import PodcastReviewForm from './PodcastReviewForm'
 import ReviewTile from './ReviewTile.js'
 
@@ -11,9 +11,19 @@ const PodcastShowPage = (props) => {
     description: "",
     reviews: []
   })
+  const [currentUser, setCurrentUser] = useState(undefined)
   const [errors, setErrors] = useState([])
 
   const { id: podcastId } = props.match.params
+
+  const fetchCurrentUser = async () => {
+    try {
+      const user = await getCurrentUser()
+      setCurrentUser(user)
+    } catch (err) {
+      setCurrentUser(null)
+    }
+  }
 
   const fetchPodcast = async () => {
     try {
@@ -61,7 +71,18 @@ const PodcastShowPage = (props) => {
 
   useEffect(() => {
     fetchPodcast()
+    fetchCurrentUser()
   }, [])
+
+  let submitNewReviewForm = ''
+  if (currentUser) {
+    submitNewReviewForm = (
+      <div>
+        <ErrorList errors={errors} />
+        <PodcastReviewForm postReview={postPodcastReview} />
+      </div>
+    )
+  }
 
   const reviews = podcast.reviews.map(review => {
     return (
@@ -76,8 +97,7 @@ const PodcastShowPage = (props) => {
     <div>
       <h1>{podcast.name}</h1>
       <p>{podcast.description}</p>
-      <ErrorList errors={errors} />
-      <PodcastReviewForm postReview={postPodcastReview} />
+      {submitNewReviewForm}
       <div>
         {reviews}
       </div>

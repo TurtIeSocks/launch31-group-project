@@ -14,7 +14,11 @@ import UserProfile from "./UserProfile.js"
 import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
 import PodcastGenreShow from "./genres/PodcastGenreShow.js"
+import PodcastEdit from './podcasts/PodcastEdit.js' 
+import PodcastDel from './podcasts/PodcastDel.js'
 import GenreForm from "./genres/GenreForm.js"
+import GenreEdit from './genres/GenreEdit.js' 
+import GenreDel from './genres/GenreDel.js' 
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -43,9 +47,13 @@ const App = (props) => {
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/podcasts" component={PodcastsIndex} />
         <AuthenticatedRoute exact path="/podcasts/new" component={PodcastForm} user={currentUser} />
+        <Route exact path="/podcasts/:id/edit" component={PodcastEdit} />
+        <Route exact path="/podcasts/:id/delete" component={PodcastDel} />
         <Route exact path="/podcasts/:id" component={PodcastShowPage} />
         <Route exact path="/genres" component={GenreIndex} />
         <AuthenticatedRoute exact path="/genres/new" component={GenreForm} user={currentUser} />
+        <Route exact path="/genres/:id/edit" component={GenreEdit} />
+        <Route exact path="/genres/:id/delete" component={GenreDel} />
         <Route exact path="/genres/:id" component={PodcastGenreShow} />
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
       </Switch>

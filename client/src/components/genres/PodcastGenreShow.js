@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import PodcastTile from "../podcasts/PodcastTile.js"
-import PodcastForm from "../podcasts/PodcastForm.js"
+
 const PodcastGenreShow = (props) => {
   const [podcasts, setPodcasts] = useState([])
   const [genreName, setGenreName] = useState("")
@@ -33,7 +33,6 @@ const PodcastGenreShow = (props) => {
   return (
     <div>
       <h1>{genreName}</h1>
-      <PodcastForm genreId={genreId} />
       {podcastList}
     </div>
   )
