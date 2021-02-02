@@ -49,6 +49,12 @@ const NewGenreForm = (props) => {
     })
   }
 
+  const resetFields = () => {
+    setNewGenre({
+      name: "",
+    })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     postGenre(newGenre)
@@ -57,9 +63,7 @@ const NewGenreForm = (props) => {
 
   const clearForm = (event) => {
     event.preventDefault()
-    setNewGenre({
-      name: "",
-    })
+    resetFields()
   }
 
   return (
