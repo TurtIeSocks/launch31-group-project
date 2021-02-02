@@ -1,50 +1,26 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-import getCurrentUser from "../../services/getCurrentUser.js"
 
-const PodcastTile = ({ podcast }) => {
-  const [currentUser, setCurrentUser] = useState({
-    id: ''
-  })
-
-  const fetchCurrentUser = async () => {
-    try {
-      const user = await getCurrentUser()
-      setCurrentUser(user)
-    } catch (err) {
-      setCurrentUser({
-        id: ''
-      })
-    }
-  }
-
-  useEffect(() => {
-    fetchCurrentUser()
-  }, [])
-
+const PodcastTile = ({ podcast, user }) => {
   let editDeleteButtons = ''
-  if (currentUser.id === podcast.userId) {
+
+  if (user !== null && user.id === podcast.userId) {
     editDeleteButtons = (
       <div>
-    <Link to={`/podcasts/${podcast.id}/edit`} className="button">
-      Edit
+        <Link to={`/podcasts/${podcast.id}/edit`} className="button">
+          Edit
     </Link>
-    <Link to={`/podcasts/${podcast.id}/delete`} className="button">
-      Delete
+        <Link to={`/podcasts/${podcast.id}/delete`} className="button">
+          Delete
     </Link>
-    </div>
+      </div>
     )
   }
-
   return (
-    <div>
+    <div className='callout primary'>
       <Link to={`/podcasts/${podcast.id}`}>
-        <div className="callout primary">
-          <h1>{podcast.name}</h1>
-          <p>{podcast.description}</p>
-          <div className="margin">
-          </div>
-        </div>
+        <h1>{podcast.name}</h1>
+        <p>{podcast.description}</p>
       </Link>
       {editDeleteButtons}
     </div>

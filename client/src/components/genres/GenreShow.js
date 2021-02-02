@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import PodcastTile from "../podcasts/PodcastTile.js"
+import { withRouter } from "react-router-dom"
 
 const PodcastGenreShow = (props) => {
   const [podcasts, setPodcasts] = useState([])
@@ -27,7 +28,12 @@ const PodcastGenreShow = (props) => {
   }, [])
 
   const podcastList = podcasts.map((podcast) => {
-    return <PodcastTile key={podcast.id} podcast={podcast} />
+    return (
+      <PodcastTile
+        key={podcast.id}
+        podcast={podcast}
+        user={props.user}
+      />)
   })
 
   return (
@@ -38,4 +44,4 @@ const PodcastGenreShow = (props) => {
   )
 }
 
-export default PodcastGenreShow
+export default withRouter(PodcastGenreShow)

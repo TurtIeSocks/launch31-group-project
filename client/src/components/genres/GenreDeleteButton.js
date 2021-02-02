@@ -51,7 +51,6 @@ const GenreDel = (props) => {
     setShouldRedirect(true)
   }
 
-
   if (shouldRedirect) {
     return <Redirect to="/genres" />
   }

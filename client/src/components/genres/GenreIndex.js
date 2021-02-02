@@ -28,6 +28,7 @@ const GenreIndex = (props) => {
       <GenreTile
         key={genre.id}
         genre={genre}
+        user={props.user}
       />)
   })
 

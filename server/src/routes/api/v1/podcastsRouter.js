@@ -59,11 +59,10 @@ podcastsRouter.patch("/:id", async (req, res) => {
   try {
     const { body } = req
     const formInput = cleanUserInput(body)
-    const { name, description } = formInput
+    const { name, description, genreId } = formInput
     const podcastId  = req.params.id
-
     const editedPodcast = await Podcast.query()
-      .update({ name, description })
+      .update({ name, description, genreId })
       .where('id', podcastId)
     return res.status(201).json({ podcast: editedPodcast })
   } catch (error) {

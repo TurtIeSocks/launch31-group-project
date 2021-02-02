@@ -7,6 +7,7 @@ const PodcastEdit = (props) => {
   const [podcastRecord, setPodcastRecord] = useState({
     name: "",
     description: "",
+    genreId: ""
   })
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -20,12 +21,17 @@ const PodcastEdit = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setPodcastRecord(body.podcast)
+      const podcast = body.podcast
+      if (!podcast.description) {
+        setPodcastRecord({...podcast, description: ""})
+      } else {
+        setPodcastRecord(body.podcast)
+      }
     } catch (error) {
       console.error(error.message)
     }
   }
-
+  
   const editPodcast = async (podcastPayload) => {
     try {
       const response = await fetch(`/api/v1/podcasts/${podcastId}`, {
@@ -69,6 +75,7 @@ const PodcastEdit = (props) => {
     setPodcastRecord({
       name: "",
       description: "",
+      genreId: ""
     })
   }
 

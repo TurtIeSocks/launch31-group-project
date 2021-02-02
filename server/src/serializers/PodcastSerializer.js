@@ -2,7 +2,7 @@ import ReviewSerializer from "./ReviewSerializer.js"
 
 class PodcastSerializer {
   static async getSummary(podcast) {
-    const allowedAttributes = ["id", "name", "description", "userId"]
+    const allowedAttributes = ["id", "name", "description", "genreId", "userId"]
 
     let serializedPodcast = {}
 

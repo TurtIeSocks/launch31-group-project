@@ -13,12 +13,12 @@ import PodcastForm from "./podcasts/PodcastForm.js"
 import UserProfile from "./UserProfile.js"
 import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
-import PodcastGenreShow from "./genres/PodcastGenreShow.js"
-import PodcastEdit from './podcasts/PodcastEdit.js' 
-import PodcastDel from './podcasts/PodcastDel.js'
+import GenreShow from "./genres/GenreShow.js"
+import PodcastEditForm from './podcasts/PodcastEditForm.js'
+import PodcastDeleteButton from './podcasts/PodcastDeleteButton.js'
 import GenreForm from "./genres/GenreForm.js"
-import GenreEdit from './genres/GenreEdit.js' 
-import GenreDel from './genres/GenreDel.js' 
+import GenreEditForm from './genres/GenreEditForm.js'
+import GenreDeleteButton from './genres/GenreDeleteButton.js'
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -45,16 +45,24 @@ const App = (props) => {
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
-        <Route exact path="/podcasts" component={PodcastsIndex} />
+        <Route exact path="/podcasts">
+          <PodcastsIndex user={currentUser} />
+        </Route>
         <AuthenticatedRoute exact path="/podcasts/new" component={PodcastForm} user={currentUser} />
-        <Route exact path="/podcasts/:id/edit" component={PodcastEdit} />
-        <Route exact path="/podcasts/:id/delete" component={PodcastDel} />
-        <Route exact path="/podcasts/:id" component={PodcastShowPage} />
-        <Route exact path="/genres" component={GenreIndex} />
+        <Route exact path="/podcasts/:id/edit" component={PodcastEditForm} />
+        <Route exact path="/podcasts/:id/delete" component={PodcastDeleteButton} />
+        <Route exact path="/podcasts/:id">
+          <PodcastShowPage user={currentUser} />
+        </Route>
+        <Route exact path="/genres">
+          <GenreIndex user={currentUser} />
+        </Route>
         <AuthenticatedRoute exact path="/genres/new" component={GenreForm} user={currentUser} />
-        <Route exact path="/genres/:id/edit" component={GenreEdit} />
-        <Route exact path="/genres/:id/delete" component={GenreDel} />
-        <Route exact path="/genres/:id" component={PodcastGenreShow} />
+        <Route exact path="/genres/:id/edit" component={GenreEditForm} />
+        <Route exact path="/genres/:id/delete" component={GenreDeleteButton} />
+        <Route exact path="/genres/:id">
+          <GenreShow user={currentUser} />
+        </Route>
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
       </Switch>
     </Router>
