@@ -8,7 +8,7 @@ This application displays various podcast genres, their correlating podcasts, an
 
 ## Demo (images, links, live demos) ##
 
-[lucidChart ER Diagram](https://lucid.app/documents/view/e35af0e1-2b4c-4a63-98f0-075f7846549c)
+[PodClass ER Diagram](https://lucid.app/documents/view/e35af0e1-2b4c-4a63-98f0-075f7846549c)
 ## Technologies Used ##
 Postgres, Express, React, Node stack; heroku; Cypress.
 
