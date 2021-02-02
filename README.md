@@ -7,8 +7,8 @@ Do you like to listen to other people talking? Do you want to keep track of your
 This application displays various podcast genres, their correlating podcasts, and reviews for those podcasts. It also allows users to add podcasts and reviews of their own.
 
 ## Demo (images, links, live demos) ##
-![Image of ER Diagram]
-(https://lucid.app/documents/view/e35af0e1-2b4c-4a63-98f0-075f7846549c)
+
+[lucidChart ER Diagram](https://lucid.app/documents/view/e35af0e1-2b4c-4a63-98f0-075f7846549c)
 ## Technologies Used ##
 Postgres, Express, React, Node stack; heroku; Cypress.
 
