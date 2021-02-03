@@ -15,41 +15,25 @@ const HomePage = (props) => {
         <ul className="orbit-container">
           <li className="is-active orbit-slide">
             <figure className="orbit-figure">
-              <img
-                className="orbit-image"
-                src={"https://i.redd.it/qaifncf1hc651.png"}
-                alt="Space"
-              />
+              <img className="orbit-image" src="https://i.redd.it/qaifncf1hc651.png" alt="Space" />
               <figcaption className="orbit-caption">Space, the final frontier.</figcaption>
             </figure>
           </li>
           <li className="orbit-slide">
             <figure className="orbit-figure">
-              <img
-                className="orbit-image"
-                src={"https://i.redd.it/qaifncf1hc651.png"}
-                alt="Space"
-              />
+              <img className="orbit-image" src="https://i.redd.it/qaifncf1hc651.png" alt="Space" />
               <figcaption className="orbit-caption">Lets Rocket!</figcaption>
             </figure>
           </li>
           <li className="orbit-slide">
             <figure className="orbit-figure">
-              <img
-                className="orbit-image"
-                src={"https://i.redd.it/qaifncf1hc651.png"}
-                alt="Space"
-              />
+              <img className="orbit-image" src="https://i.redd.it/qaifncf1hc651.png" alt="Space" />
               <figcaption className="orbit-caption">Encapsulating</figcaption>
             </figure>
           </li>
           <li className="orbit-slide">
             <figure className="orbit-figure">
-              <img
-                className="orbit-image"
-                src={"https://i.redd.it/qaifncf1hc651.png"}
-                alt="Space"
-              />
+              <img className="orbit-image" src="https://i.redd.it/qaifncf1hc651.png" alt="Space" />
               <figcaption className="orbit-caption">Outta This World</figcaption>
             </figure>
           </li>
