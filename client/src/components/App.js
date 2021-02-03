@@ -15,7 +15,7 @@ import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
 import PodcastGenreShow from "./genres/PodcastGenreShow.js"
 import GenreForm from "./genres/GenreForm.js"
-
+import HomePage from "../components/HomePage.js"
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
 
@@ -37,8 +37,10 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
+          <AuthenticatedRoute exact path="/" user={currentUser} component={HomePage} />
           <h2 className="welcome-header">Pod Classed: Classify Your Pod</h2>
         </Route>
+        <AuthenticatedRoute exact path="/" user={currentUser} component={HomePage} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/podcasts" component={PodcastsIndex} />
