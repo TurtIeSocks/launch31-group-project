@@ -22,17 +22,14 @@ const PodcastsIndex = (props) => {
   }, [])
 
   const podcastTiles = podcasts.map((podcast) => {
-    return (
-      <PodcastTile 
-        key={podcast.id}
-        podcast={podcast} 
-      />
-    )
+    return <PodcastTile key={podcast.id} podcast={podcast} />
   })
 
   return (
-    <div>
-      {podcastTiles}
+    <div className="text-center">
+      <div className="grid-container">
+        <div className="grid-x align-center small-up-2 medium-up-3">{podcastTiles}</div>
+      </div>
     </div>
   )
 }

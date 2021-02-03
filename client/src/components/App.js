@@ -15,7 +15,7 @@ import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
 import PodcastGenreShow from "./genres/PodcastGenreShow.js"
 import GenreForm from "./genres/GenreForm.js"
-import HomePage from "../components/HomePage.js"
+import HomePage from "./HomePage.js"
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
 

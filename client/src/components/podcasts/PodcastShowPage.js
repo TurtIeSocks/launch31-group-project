@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react"
 import ErrorList from "../ErrorList"
 import translateServerErrors from "../../services/translateServerErrors"
 
-import PodcastReviewForm from './PodcastReviewForm'
-import ReviewTile from './ReviewTile.js'
+import PodcastReviewForm from "./PodcastReviewForm"
+import ReviewTile from "./ReviewTile.js"
 
 const PodcastShowPage = (props) => {
   const [podcast, setPodcast] = useState({
     name: "",
     description: "",
-    reviews: []
+    reviews: [],
   })
   const [errors, setErrors] = useState([])
 
@@ -33,9 +33,9 @@ const PodcastShowPage = (props) => {
       const response = await fetch(`/api/v1/podcasts/${podcastId}/reviews`, {
         method: "POST",
         headers: new Headers({
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         }),
-        body: JSON.stringify(reviewPayload)
+        body: JSON.stringify(reviewPayload),
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -45,13 +45,13 @@ const PodcastShowPage = (props) => {
         } else {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
-          throw (error)
+          throw error
         }
       } else {
         const body = await response.json()
         setPodcast({
           ...podcast,
-          reviews: [...podcast.reviews, body.review]
+          reviews: [...podcast.reviews, body.review],
         })
       }
     } catch (error) {
@@ -63,13 +63,8 @@ const PodcastShowPage = (props) => {
     fetchPodcast()
   }, [])
 
-  const reviews = podcast.reviews.map(review => {
-    return (
-      <ReviewTile
-        key={review.id}
-        review={review}
-      />
-    )
+  const reviews = podcast.reviews.map((review) => {
+    return <ReviewTile key={review.id} review={review} />
   })
 
   return (
@@ -78,9 +73,7 @@ const PodcastShowPage = (props) => {
       <p>{podcast.description}</p>
       <ErrorList errors={errors} />
       <PodcastReviewForm postReview={postPodcastReview} />
-      <div>
-        {reviews}
-      </div>
+      <div>{reviews}</div>
     </div>
   )
 }

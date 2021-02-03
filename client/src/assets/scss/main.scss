@@ -17,6 +17,21 @@
   width: 60vw;
   margin: 30px auto;
 }
+.card {
+  width: 60vw;
+  margin: 30px auto;
+  background-color: #cae9ff;
+}
+.card-section {
+  align-items: center;
+}
+.grid-x {
+  align-items: center;
+}
+img {
+  width: 60vw;
+  margin: 10px auto;
+}
 
 .header {
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -25,7 +40,9 @@
 h1 {
   text-align: center;
 }
-
+p {
+  text-align: center;
+}
 h2 {
   text-align: center;
 }
@@ -44,8 +61,4 @@ h2 {
 
 body {
   background-color: #bee9e8;
-}
-
-.callout primary h2 a {
-  color: black;
 }

@@ -31,9 +31,11 @@ const GenreIndex = (props) => {
   return (
     <div className="text-center">
       <h1 className="header">Podcast Genres</h1>
-      {genreItems}
-      <div className="callout secondary small">
-        <Link to="/genres/new">Submit a New Genre!</Link>
+      <div className="grid-x">
+        {genreItems}
+        <div className="callout secondary">
+          <Link to="/genres/new">Submit a New Genre!</Link>
+        </div>
       </div>
     </div>
   )
