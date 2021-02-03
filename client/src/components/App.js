@@ -37,8 +37,8 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <AuthenticatedRoute exact path="/" user={currentUser} component={HomePage} />
           <h2 className="welcome-header">Pod Classed: Classify Your Pod</h2>
+          <AuthenticatedRoute exact path="/" user={currentUser} component={HomePage} />
         </Route>
         <AuthenticatedRoute exact path="/" user={currentUser} component={HomePage} />
         <Route exact path="/users/new" component={RegistrationForm} />
