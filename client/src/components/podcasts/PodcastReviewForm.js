@@ -23,7 +23,7 @@ const PodcastReview = ({ postReview }) => {
     })
   }
 
-  const resetFields = ()=> {
+  const resetFields = () => {
     setPodcastReviewRecord({
       description: "",
       rating: ""
@@ -42,25 +42,27 @@ const PodcastReview = ({ postReview }) => {
   }
 
   return (
-    <div className="card">
-      <div className="card-divider">
-        <h1>Write a review</h1>
+    <div className="card" id="podcast-review-form">
+      <div className="card-divider text-center">
+        <h1>Write Your Review Here</h1>
       </div>
       <form onSubmit={handleSubmit} >
-        <label htmlFor='description'>Review Body:
-          <input
-            type='text'
+        <label htmlFor='description' className="text-left">Review Body
+          <textarea
             name="description"
             onChange={handleInputChange}
             value={podcastReviewRecord.description}
+            className="input-field"
           />
         </label>
 
-        <label htmlFor='rating'>Star Rating: 
+        <label htmlFor='rating' className="text-left">Star Rating
           <select
             name="rating"
             onChange={handleInputChange}
-            value={podcastReviewRecord.rating}>
+            value={podcastReviewRecord.rating}
+            className="input-field"
+            id="star-rating">
             {ratingOptions}
           </select>
         </label>

@@ -41,8 +41,14 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2 className="welcome-header">Pod Classed: Classify Your Pod</h2>
-          
+          <div>
+            <h2 className=" callout small welcome-header">PodClassed: Classify Your Listening</h2>
+          </div>
+          <li key="add-genre" className="button">
+            <Link to="/genres/new" className="button">
+              Add Genre
+      </Link>
+          </li>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

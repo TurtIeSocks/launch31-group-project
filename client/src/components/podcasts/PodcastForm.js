@@ -20,7 +20,7 @@ const PodcastForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setGenres([{name: "", id: ""}, ...body.genres])
+      setGenres([{ name: "", id: "" }, ...body.genres])
     } catch (error) {
       console.error(error.message)
     }
@@ -97,47 +97,52 @@ const PodcastForm = (props) => {
   }
 
   return (
-    <div>
+    <div className="card" id="podcast-review-form">
       <h1>Add a New Podcast</h1>
-      <ErrorList errors={errors} />
-      <form className="callout" onSubmit={onSubmitHandler}>
-        <label htmlFor="name">
-          Podcast Name:
-        </label>
-        <input type="text"
-          id="name"
-          name="name"
-          onChange={handleInputChange}
-          value={podcastRecord.name}
-        />
+      <div className="card-divider text-center">
 
-        <label htmlFor="description">
-          Podcast Description:
+        <ErrorList errors={errors} />
+        <form className="callout small" onSubmit={onSubmitHandler}>
+          <label htmlFor="name">
+            Podcast Name:
         </label>
-        <input
-          type="text"
-          name="description"
-          id="description"
-          onChange={handleInputChange}
-          value={podcastRecord.description}
-        />
+          <input type="text"
+            id="name"
+            name="name"
+            onChange={handleInputChange}
+            value={podcastRecord.name}
+          />
 
-        <label htmlFor="genreId">
+          <label htmlFor="description">
+            Podcast Description:
+        </label>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            onChange={handleInputChange}
+            value={podcastRecord.description}
+          />
+
+          <label htmlFor="genreId">
+            Genre:
+            </label>
           <select
             name="genreId"
             onChange={handleInputChange}
             value={podcastRecord.genreId}>
             {availGenres}
           </select>
-        </label>
 
-        <div className="button-group">
-          <button className="button" onClick={clearForm}>
-            Clear
+
+          <div className="button-group">
+            <button className="button" onClick={clearForm}>
+              Clear
           </button>
-          <input className="button" type="submit" value="Submit" />
-        </div>
-      </form>
+            <input className="button" type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

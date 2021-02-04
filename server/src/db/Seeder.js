@@ -16,63 +16,63 @@ class Seeder {
     })
 
     console.log('seeding genres...')
-    const comedy = await Genre.query().insertAndFetch({ 
-      name: 'Comedy', 
+    const comedy = await Genre.query().insertAndFetch({
+      name: 'Comedy',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/Wzd9ABV.png'
     })
-    const trueCrime = await Genre.query().insertAndFetch({ 
-      name: 'True Crime', 
+    const trueCrime = await Genre.query().insertAndFetch({
+      name: 'True Crime',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/COZtGCR.png'
     })
-    const news = await Genre.query().insertAndFetch({ 
-      name: 'News', 
+    const news = await Genre.query().insertAndFetch({
+      name: 'News',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/T7DBKPX.png'
     })
-    const horror = await Genre.query().insertAndFetch({ 
-      name: 'Horror', 
+    const horror = await Genre.query().insertAndFetch({
+      name: 'Horror',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/WqxPsPn.png'
     })
-    const blues = await Genre.query().insertAndFetch({ 
-      name: 'Blues', 
+    const blues = await Genre.query().insertAndFetch({
+      name: 'Blues',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/s83ZWYJ.png'
     })
-    const business = await Genre.query().insertAndFetch({ 
-      name: 'Business', 
+    const business = await Genre.query().insertAndFetch({
+      name: 'Business',
       userId: user2.id,
       imageUrl: 'https://i.imgur.com/HkVpMA2.png'
     })
-    const fiction = await Genre.query().insertAndFetch({ 
-      name: 'Fiction', 
+    const fiction = await Genre.query().insertAndFetch({
+      name: 'Fiction',
       userId: user2.id,
       imageUrl: 'https://i.imgur.com/RujBwAk.png'
     })
-    const music = await Genre.query().insertAndFetch({ 
-      name: 'Music', 
+    const music = await Genre.query().insertAndFetch({
+      name: 'Music',
       userId: user2.id,
       imageUrl: 'https://i.imgur.com/LXOzDir.png'
     })
-    const sports = await Genre.query().insertAndFetch({ 
-      name: 'Sports', 
+    const sports = await Genre.query().insertAndFetch({
+      name: 'Sports',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/Cbd55Kw.png'
     })
-    const education = await Genre.query().insertAndFetch({ 
-      name: 'Education', 
+    const education = await Genre.query().insertAndFetch({
+      name: 'Education',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/w4me9iw.png'
     })
-    const tv = await Genre.query().insertAndFetch({ 
-      name: 'TV', 
+    const tv = await Genre.query().insertAndFetch({
+      name: 'TV',
       userId: user.id,
       imageUrl: 'https://i.imgur.com/DaJjXxL.png'
     })
-    const videoGames = await Genre.query().insertAndFetch({ 
-      name: 'Video Games', 
+    const videoGames = await Genre.query().insertAndFetch({
+      name: 'Video Games',
       userId: user2.id,
       imageUrl: 'https://i.imgur.com/MFBu0no.png'
     })
@@ -122,7 +122,7 @@ class Seeder {
     })
     const aWorldWhereEveryoneHasAJob = await fiction.$relatedQuery('podcasts').insertAndFetch({
       name: 'A World Where Everyone Has a Job',
-      description: 'Frog report all the news',
+      description: 'Can you imagine?',
       userId: user.id,
       genreId: news.id,
       imageUrl: 'https://i.imgur.com/0C7eZdD.png'

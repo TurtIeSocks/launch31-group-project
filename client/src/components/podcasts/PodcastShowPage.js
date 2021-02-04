@@ -82,21 +82,23 @@ const PodcastShowPage = (props) => {
     )
   })
 
-const divStyle = {
-  backgroundImage: `url(${podcast.imageUrl})`, 
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "center",
-  backgroundSize: "cover"
-}
+  const divStyle = {
+    backgroundImage: `url(${podcast.imageUrl})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover"
+  }
   return (
     <div style={divStyle}>
       <div className="callout">
-      <h1>{podcast.name}</h1>
-      <p>{podcast.description}</p>
+        <h1>{podcast.name}</h1>
+        <p>{podcast.description}</p>
       </div>
       {submitNewReviewForm}
-      <div>
-        {reviews}
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
+          {reviews}
+        </div>
       </div>
     </div>
   )

@@ -67,21 +67,26 @@ const NewGenreForm = (props) => {
   }
 
   return (
-    <div>
+    // <div className="card" id="review-form">
+    //   <div className="card-divider text-center"></div>
+    <div className="card" id="genre-review-form">
       <h1>Add a New Genre</h1>
-      <ErrorList errors={errors} />
-      <form onSubmit={handleSubmit} className="callout">
-        <label>
-          Name:
+      <div className="card-divider text-center">
+
+        <ErrorList errors={errors} />
+        <form onSubmit={handleSubmit} className="callout">
+          <label>
+            Name
           <input type="text" name="name" onChange={handleInputChange} value={newGenre.name} />
-        </label>
-        <div className="button-group">
-          <button className="button" onClick={clearForm}>
-            Clear
+          </label>
+          <div className="button-group">
+            <button className="button" onClick={clearForm}>
+              Clear
           </button>
-          <input className="button" type="submit" value="Submit" />
-        </div>
-      </form>
+            <input className="button" type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

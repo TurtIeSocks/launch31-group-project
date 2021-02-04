@@ -37,9 +37,11 @@ const PodcastGenreShow = (props) => {
   })
 
   return (
-    <div>
+    <div className="grid-container">
       <h1>{genreName}</h1>
-      {podcastList}
+      <div className="grid-x grid-margin-x small-up-1 medium-up-2 large-up-2">
+        {podcastList}
+      </div>
     </div>
   )
 }

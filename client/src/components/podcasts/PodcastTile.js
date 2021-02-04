@@ -140,7 +140,7 @@ const PodcastTile = ({ podcast, user }) => {
     useEffect(() => {
       fetchVotes()
     }, [])
-  
+
     voteButtons =
       <div>
         <button className={upVoteButtonClass} onClick={upVoteClickHandler}>
@@ -165,13 +165,19 @@ const PodcastTile = ({ podcast, user }) => {
   }
 
   return (
-    <div className='card text-center'>
-      <Link to={`/podcasts/${podcast.id}`}>
-        <h1>{podcast.name}</h1>
-        <p>{podcast.description}</p>
-      </Link>
-      {voteButtons}
-      {editDeleteButtons}
+    <div className="cell">
+      <div className='card text-center'>
+        <Link to={`/podcasts/${podcast.id}`}>
+          <div className="card-divider">
+            <h1>{podcast.name}</h1>
+          </div>
+          <div className="card-section">
+            <p>{podcast.description}</p>
+          </div>
+        </Link>
+        {voteButtons}
+        {editDeleteButtons}
+      </div>
     </div>
   )
 }

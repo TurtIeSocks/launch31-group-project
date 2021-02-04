@@ -16,6 +16,7 @@
 .callout {
   width: 60vw;
   margin: 30px auto;
+  opacity: .75;
 }
 
 .card {
@@ -23,10 +24,40 @@
   margin: 30px auto;
   background-color: #d7ecfa;
   text-align: center!important;
+  opacity: .85;
+}
+
+#genre-review-form {
+  width: 800px;
+  margin:auto;
+  border-width: thin;
+  border-color: black;
+  opacity: 1;
+}
+
+#podcast-review-form {
+  width: 800px;
+  margin:auto;
+  border-width: thin;
+  border-color: black;
+  opacity: 1;
+}
+
+.input-field {
+  margin: 10px;
+  width: 90%;
+}
+
+#star-rating {
+  width: 20%;
 }
 
 .header {
   font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.welcome-header {
+  
 }
 
 h1 {
@@ -54,10 +85,11 @@ p {
 
 body {
   background-color: #CAE9FF;
+  background-image: url("https://images-ext-1.discordapp.net/external/DgcJIgdd8Rk-ppXoCm9kPMfWWFlTlMtEiF9XXI9ZjAo/https/www.pixelstalk.net/wp-content/uploads/2016/10/Diamond-Pattern-Backgrounds.png?width=913&height=571");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-form {
-  width: 800px
-}
 
 

@@ -20,21 +20,23 @@ const PodcastsIndex = (props) => {
   useEffect(() => {
     getPodcasts()
   }, [])
-  
+
   const podcastTiles = podcasts.map((podcast) => {
     return (
-      <PodcastTile 
+      <PodcastTile
         key={podcast.id}
-        podcast={podcast} 
+        podcast={podcast}
         user={props.user}
       />
     )
   })
 
   return (
-    <div>
+    <div className="grid-container">
       <h1 className="header">Podcasts</h1>
-      {podcastTiles}
+      <div className="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
+        {podcastTiles}
+      </div>
     </div>
   )
 }
