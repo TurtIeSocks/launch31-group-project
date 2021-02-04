@@ -30,7 +30,7 @@ const PodcastTile = ({ podcast, user }) => {
 
   useEffect(() => {
     podcast.userVotes.forEach(vote => {
-      if (vote.userId === user.id) {
+      if (user && vote.userId === user.id) {
         getUserVoteState(vote.value)
       }
     })
@@ -121,10 +121,6 @@ const PodcastTile = ({ podcast, user }) => {
   let voteButtons = ''
   let editDeleteButtons = ''
   if (user !== null) {
-    useEffect(() => {
-      fetchVotes()
-    }, [])
-
     voteButtons =
       <div>
         <button className={upVoteButtonClass} onClick={upVoteClickHandler}>
