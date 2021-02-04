@@ -9,7 +9,7 @@ class Vote extends Model {
   static get relationMappings() {
     const { Podcast, User } = require('./index.js')
     return {
-      users: {
+      user: {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
@@ -17,8 +17,8 @@ class Vote extends Model {
           to: "users.id"
         }
       },
-      podcasts: {
-        relation: Model.HasManyRelation,
+      podcast: {
+        relation: Model.BelongsToOneRelation,
         modelClass: Podcast,
         join: {
           from: "votes.podcastId",

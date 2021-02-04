@@ -72,18 +72,6 @@ class User extends uniqueFunc(Model) {
           from: "users.id",
           to: "genres.userId"
         }
-      },
-      votes: {
-        relation: Model.ManyToManyRelation,
-        modelClass: Vote,
-        join: {
-          from: 'users.id',
-          through: {
-            from: 'votes.userId',
-            to: 'votes.podcastId'
-          },
-          to: 'podcasts.id'
-        }
       }
     }
   }
