@@ -82,10 +82,18 @@ const PodcastShowPage = (props) => {
     )
   })
 
+const divStyle = {
+  backgroundImage: `url(${podcast.imageUrl})`, 
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  backgroundSize: "cover"
+}
   return (
-    <div>
+    <div style={divStyle}>
+      <div className="callout">
       <h1>{podcast.name}</h1>
       <p>{podcast.description}</p>
+      </div>
       {submitNewReviewForm}
       <div>
         {reviews}

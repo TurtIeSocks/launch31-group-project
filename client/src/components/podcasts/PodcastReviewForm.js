@@ -42,10 +42,12 @@ const PodcastReview = ({ postReview }) => {
   }
 
   return (
-    <div className="callout">
-      <h1>Write a review</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='description'>
+    <div className="card">
+      <div className="card-divider">
+        <h1>Write a review</h1>
+      </div>
+      <form onSubmit={handleSubmit} >
+        <label htmlFor='description'>Review Body:
           <input
             type='text'
             name="description"
@@ -54,7 +56,7 @@ const PodcastReview = ({ postReview }) => {
           />
         </label>
 
-        <label htmlFor='rating'>
+        <label htmlFor='rating'>Star Rating: 
           <select
             name="rating"
             onChange={handleInputChange}

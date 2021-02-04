@@ -1,6 +1,6 @@
 class GenreSerializer {
   static async getSummary(genre){
-    const allowedAttributes = ["id", "name", "userId"]
+    const allowedAttributes = ["id", "name", "userId", "imageUrl"]
     let serializedGenre = {}
 
     for (const attribute of allowedAttributes) {

@@ -33,6 +33,7 @@ const PodcastsIndex = (props) => {
 
   return (
     <div>
+      <h1 className="header">Podcasts</h1>
       {podcastTiles}
     </div>
   )

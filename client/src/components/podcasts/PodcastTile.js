@@ -134,13 +134,13 @@ const PodcastTile = ({ podcast, user }) => {
     }
   }
 
-  useEffect(() => {
-    fetchVotes()
-  }, [])
-
   let voteButtons = ''
   let editDeleteButtons = ''
   if (user !== null) {
+    useEffect(() => {
+      fetchVotes()
+    }, [])
+  
     voteButtons =
       <div>
         <button className={upVoteButtonClass} onClick={upVoteClickHandler}>
@@ -165,7 +165,7 @@ const PodcastTile = ({ podcast, user }) => {
   }
 
   return (
-    <div className='callout primary'>
+    <div className='card text-center'>
       <Link to={`/podcasts/${podcast.id}`}>
         <h1>{podcast.name}</h1>
         <p>{podcast.description}</p>

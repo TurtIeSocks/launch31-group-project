@@ -33,9 +33,11 @@ const GenreIndex = (props) => {
   })
 
   return (
-    <div className="text-center">
-      <h1 className="header">Podcast Genres</h1>
-      {genreItems}
+    <div className="grid-container">
+        <h1 className="header">Podcast Genres</h1>
+      <div>
+       {genreItems}
+      </div>
     </div>
   )
 }

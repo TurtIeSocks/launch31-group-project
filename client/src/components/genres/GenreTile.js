@@ -19,12 +19,12 @@ const GenreTile = ({ genre, user }) => {
   }
 
   return (
-    <div className="callout primary">
-      <Link to={`/genres/${genre.id}`}>
-        <h2>{genre.name}</h2>
-      </Link>
-      {editDeleteButtons}
-    </div>
+      <div className="card small-6 medium-6 large-6 text-center" >
+          <Link to={`/genres/${genre.id}`}>
+            <h2>{genre.name}</h2>
+          </Link>
+          {editDeleteButtons}
+      </div>
   )
 }
 
