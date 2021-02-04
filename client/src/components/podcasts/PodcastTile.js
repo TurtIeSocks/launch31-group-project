@@ -163,6 +163,7 @@ const PodcastTile = ({podcast, user}) => {
         </div>
     }
   }
+
   return (
     <div className='callout primary'>
       <Link to={`/podcasts/${podcast.id}`}>

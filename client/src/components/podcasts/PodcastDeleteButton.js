@@ -52,7 +52,6 @@ const PodcastDel = (props) => {
     setShouldRedirect(true)
   }
 
-
   if (shouldRedirect) {
     return <Redirect to="/podcasts" />
   }
@@ -61,12 +60,12 @@ const PodcastDel = (props) => {
     <div>
       <h1>Delete Podcast {podcastRecord.name}</h1>
       <div className="button-group">
-      <button className="button" onClick={onSubmitHandler}>
+        <button className="button" onClick={onSubmitHandler}>
           Yes
-          </button>
+        </button>
         <button className="button" onClick={clearForm}>
           No
-          </button>
+        </button>
       </div>
     </div>
   )

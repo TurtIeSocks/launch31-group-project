@@ -23,7 +23,7 @@ const PodcastEdit = (props) => {
       const body = await response.json()
       const podcast = body.podcast
       if (!podcast.description) {
-        setPodcastRecord({...podcast, description: ""})
+        setPodcastRecord({ ...podcast, description: "" })
       } else {
         setPodcastRecord(body.podcast)
       }
@@ -31,7 +31,7 @@ const PodcastEdit = (props) => {
       console.error(error.message)
     }
   }
-  
+
   const editPodcast = async (podcastPayload) => {
     try {
       const response = await fetch(`/api/v1/podcasts/${podcastId}`, {
@@ -87,7 +87,7 @@ const PodcastEdit = (props) => {
 
   const clearForm = (event) => {
     event.preventDefault()
-      fieldReset()
+    fieldReset()
   }
 
   if (shouldRedirect) {
@@ -100,24 +100,24 @@ const PodcastEdit = (props) => {
       <ErrorList errors={errors} />
       <form className="callout" onSubmit={onSubmitHandler}>
         <label htmlFor="name">
-        Podcast Name:
+          Podcast Name:
         </label>
-          <input type="text" 
-          id="name" 
-          name="name" 
-          onChange={handleInputChange} 
-          value={podcastRecord.name} 
-          />
+        <input type="text"
+          id="name"
+          name="name"
+          onChange={handleInputChange}
+          value={podcastRecord.name}
+        />
         <label htmlFor="description">
-        Podcast Description:
+          Podcast Description:
         </label>
-          <input
+        <input
           type="text"
           name="description"
           id="description"
           onChange={handleInputChange}
           value={podcastRecord.description}
-          />
+        />
         <div className="button-group">
           <button className="button" onClick={clearForm}>
             Clear
