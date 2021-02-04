@@ -14,12 +14,12 @@ import UserProfile from "./UserProfile.js"
 import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 import PodcastShowPage from "./podcasts/PodcastShowPage.js"
 import GenreShow from "./genres/GenreShow.js"
-import PodcastEditForm from './podcasts/PodcastEditForm.js'
-import PodcastDeleteButton from './podcasts/PodcastDeleteButton.js'
+import PodcastEditForm from "./podcasts/PodcastEditForm.js"
+import PodcastDeleteButton from "./podcasts/PodcastDeleteButton.js"
 import GenreForm from "./genres/GenreForm.js"
-import GenreEditForm from './genres/GenreEditForm.js'
-import GenreDeleteButton from './genres/GenreDeleteButton.js'
-
+import GenreEditForm from "./genres/GenreEditForm.js"
+import GenreDeleteButton from "./genres/GenreDeleteButton.js"
+import HomePage from "../components/layout/HomePage.js"
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
 
@@ -40,11 +40,7 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
-          <div>
-            <h2 className=" callout small welcome-header">PodClassed: Classify Your Listening</h2>
-          </div>
-        </Route>
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/podcasts">
