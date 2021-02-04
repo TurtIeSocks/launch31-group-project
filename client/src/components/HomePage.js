@@ -4,7 +4,13 @@ import PodcastsIndex from "./podcasts/PodcastsIndex.js"
 const HomePage = (props) => {
   return (
     <div className="grid-x">
-      <PodcastsIndex />
+      <div className="row ">
+        <div className="small-2 columns">
+          <div className="cell">
+            <PodcastsIndex />
+          </div>
+        </div>
+      </div>
     </div>
 
     // <div className="card" styles={"width: 300px;"}>
