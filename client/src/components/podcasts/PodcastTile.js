@@ -1,29 +1,40 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
-const PodcastTile = (props) => {
-  const [userVote, setUserVote] = useState({
-    hasVoted: false,
-    value: 0
+const PodcastTile = ({podcast, user}) => {
+  const [userVotes, setUserVote] = useState({
+    hasUpVoted: false,
+    hasDownVoted: false
   })
-  const [totalVotes, setTotalVotes] = useState({
-    value: 0
-  })
+  const [totalVotes, setTotalVotes] = useState(0)
 
-  // const [userId, setUserId] = useState(user.id)
+  let upVoteButtonClass = 'button'
+  if (userVotes.hasUpVoted) {
+    upVoteButtonClass = 'success button'
+  }
+  let downVoteButtonClass = 'button'
+  if (userVotes.hasDownVoted) {
+    downVoteButtonClass = 'alert button'
+  }
 
   const fetchVotes = async () => {
     try {
-      const response = await fetch(`/api/v1/podcasts/${props.podcast.id}/votes`)
+      const response = await fetch(`/api/v1/podcasts/${podcast.id}/votes`)
       if (!response.ok) {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
       const votes = body.votes
-      setTotalVotes(votes.totalVotes)
-      if (votes.user) {
-        setUserVote({hasVoted: true, value: votes.user.value})
-      }    
+      setTotalVotes(votes.totalVotes.value)
+      if (votes.userVotes) {
+        if (votes.userVotes.value === 1) {
+          setUserVote({ hasUpVoted: true, hasDownVoted: false })
+        } else {
+          setUserVote({ hasUpVoted: false, hasDownVoted: true })
+        }
+      } else {
+        setUserVote({ hasUpVoted: false, hasDownVoted: false })
+      }
     } catch (error) {
       console.error(error.message)
     }
@@ -31,7 +42,7 @@ const PodcastTile = (props) => {
 
   const newVote = async (votePayload) => {
     try {
-      const response = await fetch(`/api/v1/podcasts/${props.podcast.id}/votes`, {
+      const response = await fetch(`/api/v1/podcasts/${podcast.id}/votes`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -43,8 +54,13 @@ const PodcastTile = (props) => {
       }
       const body = await response.json()
       const votes = body.votes
-      setUserVote({...votes, value: votes.userVotes.value})
-      setTotalVotes(votes.totalVotes)
+      const voteType = votes.userVotes.value === 1 ? 'up' : 'down'
+      if (voteType === 'up') {
+        setUserVote({ hasUpVoted: true, hasDownVoted: false })
+      } else {
+        setUserVote({ hasUpVoted: false, hasDownVoted: true })
+      }
+      setTotalVotes(votes.totalVotes.value)
     } catch (error) {
       console.error(error.message)
     }
@@ -52,7 +68,7 @@ const PodcastTile = (props) => {
 
   const editVote = async (votePayload) => {
     try {
-      const response = await fetch(`/api/v1/podcasts/${props.podcast.id}/votes`, {
+      const response = await fetch(`/api/v1/podcasts/${podcast.id}/votes`, {
         method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -63,30 +79,59 @@ const PodcastTile = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      const vote = body.vote
-      setTotalVotes(vote)
-      setUserVote(vote.user)
+      const votes = body.votes
+      if (votes.userVotes.value === 1) {
+        setUserVote({ hasUpVoted: true, hasDownVoted: false })
+      } else {
+        setUserVote({ hasUpVoted: false, hasDownVoted: true })
+      }
+      setTotalVotes(votes.totalVotes.value)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  const removeVote = async (votePayload) => {
+    try {
+      const response = await fetch(`/api/v1/podcasts/${podcast.id}/votes`, {
+        method: "DELETE",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(votePayload)
+      })
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      const votes = body.votes
+      setTotalVotes(votes.totalVotes.value)
+      setUserVote({ hasUpVoted: false, hasDownVoted: false })
     } catch (error) {
       console.error(error.message)
     }
   }
 
   const upVoteClickHandler = (event) => {
-    setUserVote({
-      hasVoted: true,
-      value: 1
-    })
-    upVoteHandler(event)
-    // if (userVote.hasVoted) {
-    //   editVote(userVote.value)
-    // } else {
-    //   debugger
-    // }
+    event.preventDefault()
+    if (userVotes.hasDownVoted && !userVotes.hasUpVoted) {
+      editVote({ value: 1 })
+    } else if (userVotes.hasUpVoted) {
+      removeVote({ value: 0 })
+    } else {
+      newVote({ value: 1 })
+    }
   }
 
-  const upVoteHandler = (event) => {
+  const downVoteClickHandler = (event) => {
     event.preventDefault()
-    newVote(userVote)
+    if (!userVotes.hasDownVoted && userVotes.hasUpVoted) {
+      editVote({ value: -1 })
+    } else if (userVotes.hasDownVoted) {
+      removeVote({ value: 0 })
+    } else {
+      newVote({ value: -1 })
+    }
   }
 
   useEffect(() => {
@@ -95,24 +140,24 @@ const PodcastTile = (props) => {
 
   let voteButtons = ''
   let editDeleteButtons = ''
-  if (props.user !== null) {
+  if (user !== null) {
     voteButtons =
       <div>
-        <button className="button" onClick={upVoteClickHandler}>
+        <button className={upVoteButtonClass} onClick={upVoteClickHandler}>
           Upvote
         </button>
-        <button className="button" >
+        <button className={downVoteButtonClass} onClick={downVoteClickHandler}>
           Downvote
         </button>
-        {totalVotes.value}
+        {totalVotes}
       </div>
-    if (props.user.id === props.podcast.userId) {
+    if (user.id === podcast.userId) {
       editDeleteButtons =
         <div>
-          <Link to={`/podcasts/${props.podcast.id}/edit`} className="button">
+          <Link to={`/podcasts/${podcast.id}/edit`} className="button">
             Edit
           </Link>
-          <Link to={`/podcasts/${props.podcast.id}/delete`} className="button">
+          <Link to={`/podcasts/${podcast.id}/delete`} className="button">
             Delete
           </Link>
         </div>
@@ -120,9 +165,9 @@ const PodcastTile = (props) => {
   }
   return (
     <div className='callout primary'>
-      <Link to={`/podcasts/${props.podcast.id}`}>
-        <h1>{props.podcast.name}</h1>
-        <p>{props.podcast.description}</p>
+      <Link to={`/podcasts/${podcast.id}`}>
+        <h1>{podcast.name}</h1>
+        <p>{podcast.description}</p>
       </Link>
       {voteButtons}
       {editDeleteButtons}
