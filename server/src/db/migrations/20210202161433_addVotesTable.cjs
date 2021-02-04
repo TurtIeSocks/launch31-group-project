@@ -18,7 +18,7 @@ exports.up = async (knex) => {
       .index()
       .unsigned()
       .references('users.id')
-    table.integer('value')
+    table.integer('value').notNullable()
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
   })

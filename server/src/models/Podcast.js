@@ -46,18 +46,6 @@ class Podcast extends Model {
           from: "podcasts.userId",
           to: "users.id"
         }
-      },
-      votes: {
-        relation: Model.ManyToManyRelation,
-        modelClass: Vote,
-        join: {
-          from: 'podcasts.id',
-          through: {
-            from: 'votes.podcastId',
-            to: 'votes.userId'
-          },
-          to: 'users.id'
-        }
       }
     }
   }

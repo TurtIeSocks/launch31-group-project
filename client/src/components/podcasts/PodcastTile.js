@@ -6,39 +6,35 @@ const PodcastTile = ({ podcast, user }) => {
     hasUpVoted: false,
     hasDownVoted: false
   })
-  const [totalVotes, setTotalVotes] = useState(0)
+  const [totalVotes, setTotalVotes] = useState(podcast.totalVotes.value)
 
   let upVoteButtonClass = 'button'
+
   if (userVotes.hasUpVoted) {
     upVoteButtonClass = 'success button'
   }
+
   let downVoteButtonClass = 'button'
+
   if (userVotes.hasDownVoted) {
     downVoteButtonClass = 'alert button'
   }
 
-  const fetchVotes = async () => {
-    try {
-      const response = await fetch(`/api/v1/podcasts/${podcast.id}/votes`)
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
-      }
-      const body = await response.json()
-      const votes = body.votes
-      setTotalVotes(votes.totalVotes.value)
-      if (votes.userVotes) {
-        if (votes.userVotes.value === 1) {
-          setUserVote({ hasUpVoted: true, hasDownVoted: false })
-        } else {
-          setUserVote({ hasUpVoted: false, hasDownVoted: true })
-        }
-      } else {
-        setUserVote({ hasUpVoted: false, hasDownVoted: false })
-      }
-    } catch (error) {
-      console.error(error.message)
+  const getUserVoteState = value => {
+    let state = { hasUpVoted: false, hasDownVoted: true }
+    if (value && value === 1) {
+      state = { hasUpVoted: true, hasDownVoted: false }
     }
+    return setUserVote(state)
   }
+
+  useEffect(() => {
+    podcast.userVotes.forEach(vote => {
+      if (vote.userId === user.id) {
+        getUserVoteState(vote.value)
+      }
+    })
+  }, [])
 
   const newVote = async (votePayload) => {
     try {
@@ -53,14 +49,8 @@ const PodcastTile = ({ podcast, user }) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      const votes = body.votes
-      const voteType = votes.userVotes.value === 1 ? 'up' : 'down'
-      if (voteType === 'up') {
-        setUserVote({ hasUpVoted: true, hasDownVoted: false })
-      } else {
-        setUserVote({ hasUpVoted: false, hasDownVoted: true })
-      }
-      setTotalVotes(votes.totalVotes.value)
+      getUserVoteState(body.vote.value)
+      setTotalVotes(body.total.value)
     } catch (error) {
       console.error(error.message)
     }
@@ -79,13 +69,8 @@ const PodcastTile = ({ podcast, user }) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      const votes = body.votes
-      if (votes.userVotes.value === 1) {
-        setUserVote({ hasUpVoted: true, hasDownVoted: false })
-      } else {
-        setUserVote({ hasUpVoted: false, hasDownVoted: true })
-      }
-      setTotalVotes(votes.totalVotes.value)
+      getUserVoteState(body.vote.value)
+      setTotalVotes(body.total.value)
     } catch (error) {
       console.error(error.message)
     }
@@ -104,8 +89,7 @@ const PodcastTile = ({ podcast, user }) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      const votes = body.votes
-      setTotalVotes(votes.totalVotes.value)
+      setTotalVotes(body.total.value)
       setUserVote({ hasUpVoted: false, hasDownVoted: false })
     } catch (error) {
       console.error(error.message)
