@@ -13,13 +13,14 @@ class Podcast extends Model {
         name: { type: "string", minLength: 1 },
         description: { type: "string" },
         genreId: { type: ["string", "integer"] },
-        userId: { type: ["string, integer"]}
+        userId: { type: ["string, integer"] },
+        votes: { type: ["string, integer"] }
       }
     }
   }
 
   static get relationMappings() {
-    const { Genre, Review, User } = require("./index.js")
+    const { Genre, Review, User, Vote } = require("./index.js")
 
     return {
       genre: {

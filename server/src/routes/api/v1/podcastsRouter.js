@@ -5,6 +5,7 @@ const { ValidationError } = objection
 import { Podcast } from "../../../models/index.js"
 import PodcastSerializer from "../../../serializers/PodcastSerializer.js"
 import podcastReviewsRouter from './podcastReviewsRouter.js' 
+import podcastVotesRouter from './podcastVotesRouter.js' 
 import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const podcastsRouter = new express.Router()
@@ -89,5 +90,7 @@ podcastsRouter.delete("/:id", async (req, res) => {
 })
 
 podcastsRouter.use("/:podcastId/reviews", podcastReviewsRouter)
+
+podcastsRouter.use("/:podcastId/votes", podcastVotesRouter)
 
 export default podcastsRouter

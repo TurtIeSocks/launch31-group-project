@@ -2,7 +2,7 @@ import UserSerializer from "./UserSerializer.js"
 
 class ReviewSerializer {
   static async getSummary(review) {
-    const allowedAttributes = ["id", "description", "rating", "userId"]
+    const allowedAttributes = ["id", "description", "rating"]
 
     let serializedReview = {}
 
@@ -18,9 +18,8 @@ class ReviewSerializer {
 
   static async getUser(reviews) {
     return await Promise.all(reviews.map(async review => {
-      let user = await review.$relatedQuery('user')
-      review.user = await UserSerializer.getSummary(user)
-      return review
+      const serializedReview = await ReviewSerializer.getSummary(review)
+      return serializedReview
     }))
   }
 }
