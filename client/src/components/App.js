@@ -44,11 +44,6 @@ const App = (props) => {
           <div>
             <h2 className=" callout small welcome-header">PodClassed: Classify Your Listening</h2>
           </div>
-          <li key="add-genre" className="button">
-            <Link to="/genres/new" className="button">
-              Add Genre
-      </Link>
-          </li>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
