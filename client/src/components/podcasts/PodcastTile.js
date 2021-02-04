@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
-const PodcastTile = ({podcast, user}) => {
+const PodcastTile = ({ podcast, user }) => {
   const [userVotes, setUserVote] = useState({
     hasUpVoted: false,
     hasDownVoted: false
   })
+
   const [totalVotes, setTotalVotes] = useState(0)
 
   let upVoteButtonClass = 'button'
+
   if (userVotes.hasUpVoted) {
     upVoteButtonClass = 'success button'
   }
+
   let downVoteButtonClass = 'button'
+
   if (userVotes.hasDownVoted) {
     downVoteButtonClass = 'alert button'
   }
