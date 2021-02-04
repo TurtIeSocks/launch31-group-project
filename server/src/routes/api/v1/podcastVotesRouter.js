@@ -102,6 +102,4 @@ podcastVotesRouter.delete('/', async (req, res) => {
   }
 })
 
-
-
 export default podcastVotesRouter
