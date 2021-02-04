@@ -3,7 +3,6 @@ import objection from 'objection'
 const { ValidationError } = objection
 
 import { Vote } from '../../../models/index.js'
-import VoteSerializer from '../../../serializers/VoteSerializer.js'
 
 const podcastVotesRouter = new express.Router({ mergeParams: true })
 
