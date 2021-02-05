@@ -2,16 +2,16 @@ import UserSerializer from "./UserSerializer.js"
 
 class ReviewSerializer {
   static async getSummary(review) {
-    const allowedAttributes = ["id", "description", "rating"]
+    const allowedAttributes = ["id", "description", "rating", "podcastId"]
 
     let serializedReview = {}
 
     for (const attribute of allowedAttributes) {
       serializedReview[attribute] = review[attribute]
     }
-
+    
     let user = await review.$relatedQuery('user')
-    serializedReview.user = UserSerializer.getSummary(user)
+    serializedReview.user = await UserSerializer.getSummary(user)
 
     return serializedReview
   }

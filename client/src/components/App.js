@@ -16,10 +16,13 @@ import PodcastShowPage from "./podcasts/PodcastShowPage.js"
 import GenreShow from "./genres/GenreShow.js"
 import PodcastEditForm from "./podcasts/PodcastEditForm.js"
 import PodcastDeleteButton from "./podcasts/PodcastDeleteButton.js"
+import ReviewEditForm from "./reviews/ReviewEditForm.js"
+import ReviewDeleteButton from "./reviews/ReviewDeleteButton"
 import GenreForm from "./genres/GenreForm.js"
 import GenreEditForm from "./genres/GenreEditForm.js"
 import GenreDeleteButton from "./genres/GenreDeleteButton.js"
 import HomePage from "../components/layout/HomePage.js"
+
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
 
@@ -61,6 +64,8 @@ const App = (props) => {
         <Route exact path="/genres/:id">
           <GenreShow user={currentUser} />
         </Route>
+        <Route exact path="/review/:id/edit" component={ReviewEditForm} />
+        <Route exact path="/review/:id/delete" component={ReviewDeleteButton} />
         <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
       </Switch>
     </Router>
