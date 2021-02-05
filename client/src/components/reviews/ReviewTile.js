@@ -5,7 +5,7 @@ const ReviewTile = props => {
   const { user, rating, description, id } = props.review
   
   let editDeleteButtons = ''
-  if (user !== null) {
+  if (props.user !== null) {
     if (user.id === props.user.id) {
       editDeleteButtons =
         <div>
