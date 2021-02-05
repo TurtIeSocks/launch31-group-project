@@ -7,7 +7,8 @@ const PodcastEdit = (props) => {
   const [podcastRecord, setPodcastRecord] = useState({
     name: "",
     description: "",
-    genreId: ""
+    genreId: "",
+    imageUrl: ""
   })
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -75,7 +76,8 @@ const PodcastEdit = (props) => {
     setPodcastRecord({
       name: "",
       description: "",
-      genreId: ""
+      genreId: "",
+      imageUrl: ""
     })
   }
 
@@ -118,11 +120,23 @@ const PodcastEdit = (props) => {
           onChange={handleInputChange}
           value={podcastRecord.description}
         />
+
+        <label htmlFor="imageUrl">
+          Image URL:
+        </label>
+        <input
+          type="text"
+          name="imageUrl"
+          id="imageUrl"
+          onChange={handleInputChange}
+          value={podcastRecord.imageUrl}
+        />
+
         <div className="button-group">
           <button className="button" onClick={clearForm}>
             Clear
           </button>
-          <input className="button" type="submit" value="Submit" />
+          <input className="success button" type="submit" value="Submit" />
         </div>
       </form>
     </div>

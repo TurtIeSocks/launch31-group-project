@@ -7,7 +7,8 @@ const PodcastForm = (props) => {
   const [podcastRecord, setPodcastRecord] = useState({
     name: "",
     description: "",
-    genreId: ""
+    genreId: "",
+    imageUrl: ""
   })
   const [genres, setGenres] = useState([])
   const [errors, setErrors] = useState([])
@@ -49,7 +50,8 @@ const PodcastForm = (props) => {
     setPodcastRecord({
       name: "",
       description: "",
-      genreId: ""
+      genreId: "",
+      imageUrl: ""
     })
   }
 
@@ -134,6 +136,16 @@ const PodcastForm = (props) => {
             {availGenres}
           </select>
 
+          <label htmlFor="imageUrl">
+            Image URL:
+        </label>
+          <input
+            type="text"
+            name="imageUrl"
+            id="imageUrl"
+            onChange={handleInputChange}
+            value={podcastRecord.imageUrl}
+          />
 
           <div className="button-group">
             <button className="button" onClick={clearForm}>

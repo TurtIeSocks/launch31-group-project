@@ -300,7 +300,7 @@ class Seeder {
       userId: user2.id
     })
     await catSolvesCrime.$relatedQuery('reviews').insert({
-      description: "Hmm, not as sold one this one.",
+      description: "Hmm, not sold on this one.",
       rating: "★ ★",
       userId: user2.id
     })

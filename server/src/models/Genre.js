@@ -11,6 +11,7 @@ class Genre extends Model {
       required: ["name"],
       properties: {
         name: { type: "string", minLength: 1 },
+        imageUrl: { type: "string" },
         userId: { type: ["string, integer"]}
       }
     }

@@ -13,7 +13,7 @@ class PodcastSerializer {
     }
 
     let reviews = await podcast.$relatedQuery('reviews')
-    serializedPodcast.reviews = await ReviewSerializer.getUser(reviews)
+    serializedPodcast.reviews = await ReviewSerializer.getReviews(reviews)
 
     let userVotes = await Vote.query()
       .where({ podcastId: serializedPodcast.id })

@@ -6,6 +6,7 @@ import translateServerErrors from "../../services/translateServerErrors.js"
 const NewGenreForm = (props) => {
   const [newGenre, setNewGenre] = useState({
     name: "",
+    imageUrl: ""
   })
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -52,6 +53,7 @@ const NewGenreForm = (props) => {
   const resetFields = () => {
     setNewGenre({
       name: "",
+      imageUrl: ""
     })
   }
 
@@ -75,10 +77,25 @@ const NewGenreForm = (props) => {
 
         <ErrorList errors={errors} />
         <form onSubmit={handleSubmit} className="callout">
-          <label>
+          <label htmlFor="name">
             Name
-          <input type="text" name="name" onChange={handleInputChange} value={newGenre.name} />
+          <input
+              type="text"
+              name="name"
+              onChange={handleInputChange}
+              value={newGenre.name} />
           </label>
+
+          <label htmlFor="imageUrl">
+            Image URL:
+        </label>
+          <input
+            type="text"
+            name="imageUrl"
+            id="imageUrl"
+            onChange={handleInputChange}
+            value={newGenre.imageUrl}
+          />
           <div className="button-group">
             <button className="button" onClick={clearForm}>
               Clear

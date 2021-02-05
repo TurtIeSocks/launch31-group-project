@@ -43,10 +43,12 @@ podcastsRouter.post("/", async (req, res) => {
   try {
     const { body } = req
     const formInput = cleanUserInput(body)
-    const { name, description, genreId } = formInput
+    const { name, description, genreId, imageUrl } = formInput
     const userId = req.user.id 
     
-    const newPodcast = await Podcast.query().insertAndFetch({ name, description, genreId, userId })
+    const newPodcast = await Podcast.query()
+      .insert({ name, description, genreId, userId, imageUrl })
+      .returning('*')
     return res.status(201).json({ podcast: newPodcast })
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -60,12 +62,13 @@ podcastsRouter.patch("/:id", async (req, res) => {
   try {
     const { body } = req
     const formInput = cleanUserInput(body)
-    const { name, description, genreId } = formInput
-    const podcastId  = req.params.id
-    const editedPodcast = await Podcast.query()
-      .update({ name, description, genreId })
-      .where('id', podcastId)
-    return res.status(201).json({ podcast: editedPodcast })
+    const { name, description, genreId, imageUrl } = formInput
+    const { id }  = req.params
+    
+    await Podcast.query()
+      .findById(id)
+      .update({ name, description, genreId, imageUrl })
+    return res.status(201).json()
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })
@@ -76,11 +79,12 @@ podcastsRouter.patch("/:id", async (req, res) => {
 
 podcastsRouter.delete("/:id", async (req, res) => {
   try {
-    const podcastId  = req.params.id
-    const deletedPodcast = await Podcast.query()
+    const { id }  = req.params
+    
+    await Podcast.query()
+      .findById(id)
       .delete()
-      .where('id', podcastId)
-    return res.status(201).json({ podcast: deletedPodcast })
+    return res.status(201).json()
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })

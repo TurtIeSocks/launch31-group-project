@@ -16,7 +16,7 @@ class ReviewSerializer {
     return serializedReview
   }
 
-  static async getUser(reviews) {
+  static async getReviews(reviews) {
     return await Promise.all(reviews.map(async review => {
       const serializedReview = await ReviewSerializer.getSummary(review)
       return serializedReview
