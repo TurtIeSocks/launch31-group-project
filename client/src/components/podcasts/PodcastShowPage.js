@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import ErrorList from "../ErrorList"
 import translateServerErrors from "../../services/translateServerErrors"
 import PodcastReviewForm from './PodcastReviewForm'
-import ReviewTile from './ReviewTile.js'
+import ReviewTile from '../reviews/ReviewTile.js'
 import { withRouter } from "react-router-dom"
 
 const PodcastShowPage = (props) => {
@@ -78,6 +78,7 @@ const PodcastShowPage = (props) => {
       <ReviewTile
         key={review.id}
         review={review}
+        user={props.user}
       />
     )
   })
