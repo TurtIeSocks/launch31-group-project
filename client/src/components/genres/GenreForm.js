@@ -6,6 +6,7 @@ import translateServerErrors from "../../services/translateServerErrors.js"
 const NewGenreForm = (props) => {
   const [newGenre, setNewGenre] = useState({
     name: "",
+    imageUrl: ""
   })
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -52,6 +53,7 @@ const NewGenreForm = (props) => {
   const resetFields = () => {
     setNewGenre({
       name: "",
+      imageUrl: ""
     })
   }
 
@@ -67,21 +69,41 @@ const NewGenreForm = (props) => {
   }
 
   return (
-    <div>
+    // <div className="card" id="review-form">
+    //   <div className="card-divider text-center"></div>
+    <div className="card" id="genre-review-form">
       <h1>Add a New Genre</h1>
-      <ErrorList errors={errors} />
-      <form onSubmit={handleSubmit} className="callout">
-        <label>
-          Name:
-          <input type="text" name="name" onChange={handleInputChange} value={newGenre.name} />
+      <div className="card-divider text-center">
+
+        <ErrorList errors={errors} />
+        <form onSubmit={handleSubmit} className="callout">
+          <label htmlFor="name">
+            Name
+          <input
+              type="text"
+              name="name"
+              onChange={handleInputChange}
+              value={newGenre.name} />
+          </label>
+
+          <label htmlFor="imageUrl">
+            Image URL:
         </label>
-        <div className="button-group">
-          <button className="button" onClick={clearForm}>
-            Clear
+          <input
+            type="text"
+            name="imageUrl"
+            id="imageUrl"
+            onChange={handleInputChange}
+            value={newGenre.imageUrl}
+          />
+          <div className="button-group">
+            <button className="button" onClick={clearForm}>
+              Clear
           </button>
-          <input className="button" type="submit" value="Submit" />
-        </div>
-      </form>
+            <input className="button" type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

@@ -1,13 +1,16 @@
+import PodcastSerializer from './PodcastSerializer.js'
 class GenreSerializer {
   static async getSummary(genre){
-    const allowedAttributes = ["id", "name", "userId"]
+    const allowedAttributes = ["id", "name", "userId", "imageUrl"]
     let serializedGenre = {}
 
     for (const attribute of allowedAttributes) {
       serializedGenre[attribute] = genre[attribute]
     }
 
-    serializedGenre.podcasts = await genre.$relatedQuery("podcasts")
+    const podcasts = await genre.$relatedQuery("podcasts")
+    
+    serializedGenre.podcasts = await PodcastSerializer.getPodcasts(podcasts)
 
     return serializedGenre
   }

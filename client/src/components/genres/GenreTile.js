@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 const GenreTile = ({ genre, user }) => {
-  
+
   let editDeleteButtons = ''
 
   if (user !== null && user.id === genre.userId) {
@@ -18,12 +18,21 @@ const GenreTile = ({ genre, user }) => {
     )
   }
 
+  const divStyle = {
+    backgroundImage: `url(${genre.imageUrl})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover"
+  }
+
   return (
-    <div className="callout primary">
-      <Link to={`/genres/${genre.id}`}>
-        <h2>{genre.name}</h2>
-      </Link>
-      {editDeleteButtons}
+    <div className="cell">
+      <div className="card text-center genre-tile" style={divStyle} >
+        <Link to={`/genres/${genre.id}`}>
+          <div className="genre-name">{genre.name}</div>
+        </Link>
+        {editDeleteButtons}
+      </div>
     </div>
   )
 }

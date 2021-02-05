@@ -60,7 +60,7 @@ const PodcastDel = (props) => {
     <div>
       <h1>Delete Podcast {podcastRecord.name}</h1>
       <div className="button-group">
-        <button className="button" onClick={onSubmitHandler}>
+        <button className="alert button" onClick={onSubmitHandler}>
           Yes
         </button>
         <button className="button" onClick={clearForm}>

@@ -5,7 +5,8 @@ import translateServerErrors from "../../services/translateServerErrors.js"
 
 const GenreEdit = (props) => {
   const [genreRecord, setGenreRecord] = useState({
-    name: ""
+    name: "",
+    imageUrl: ""
   })
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -66,7 +67,8 @@ const GenreEdit = (props) => {
 
   const fieldReset = () => {
     setGenreRecord({
-      name: ""
+      name: "",
+      imageUrl: ""
     })
   }
 
@@ -99,11 +101,23 @@ const GenreEdit = (props) => {
           onChange={handleInputChange}
           value={genreRecord.name}
         />
+
+        <label htmlFor="imageUrl">
+          Image URL:
+        </label>
+        <input
+          type="text"
+          name="imageUrl"
+          id="imageUrl"
+          onChange={handleInputChange}
+          value={genreRecord.imageUrl}
+        />
+
         <div className="button-group">
           <button className="button" onClick={clearForm}>
             Clear
           </button>
-          <input className="button" type="submit" value="Submit" />
+          <input className="success button" type="submit" value="Submit" />
         </div>
       </form>
     </div>

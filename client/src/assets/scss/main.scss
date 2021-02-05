@@ -16,6 +16,40 @@
 .callout {
   width: 60vw;
   margin: 30px auto;
+  opacity: 0.75;
+}
+
+.card {
+  width: 300px;
+  margin: 30px auto;
+  background-color: #d7ecfa;
+  text-align: center !important;
+  opacity: 0.85;
+}
+
+#genre-review-form {
+  width: 800px;
+  margin: auto;
+  border-width: thin;
+  border-color: black;
+  opacity: 1;
+}
+
+#podcast-review-form {
+  width: 800px;
+  margin: auto;
+  border-width: thin;
+  border-color: black;
+  opacity: 1;
+}
+
+.input-field {
+  margin: 10px;
+  width: 90%;
+}
+
+#star-rating {
+  width: 20%;
 }
 
 .header {
@@ -29,7 +63,15 @@ h1 {
 h2 {
   text-align: center;
 }
-
+p {
+  text-align: center;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+}
 .button {
   margin: 10px;
 }
@@ -43,9 +85,23 @@ h2 {
 }
 
 body {
-  background-color: #bee9e8;
+  background-color: #cae9ff;
+  background-image: url("https://images-ext-1.discordapp.net/external/DgcJIgdd8Rk-ppXoCm9kPMfWWFlTlMtEiF9XXI9ZjAo/https/www.pixelstalk.net/wp-content/uploads/2016/10/Diamond-Pattern-Backgrounds.png?width=913&height=571");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.callout primary h2 a {
-  color: black;
+.genre-name {
+  font-size: 4vw;
+  opacity: 100%;
+  font-weight: bold;
+  background: rgba(226, 226, 226, 0.5);
 }
+
+.genre-tile {
+  width: 20vw;
+  height: 20vw;
+  background-color: white;
+}
+

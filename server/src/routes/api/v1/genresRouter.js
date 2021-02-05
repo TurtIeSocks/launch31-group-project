@@ -27,7 +27,7 @@ genresRouter.get("/:id", async (req, res) => {
     const { id } = req.params
     const genre = await Genre.query().findById(id)
     const serializedGenre = await GenreSerializer.getSummary(genre)
-  
+
     return res.status(200).json({ genre: serializedGenre })
   } catch (error) {
     return res.status(500).json({ error: error })
@@ -37,11 +37,11 @@ genresRouter.get("/:id", async (req, res) => {
 genresRouter.post("/", async (req, res) => {
   const { body } = req
   const formInput = cleanUserInput(body)
-  const { name } = formInput
-  const userId = req.user.id 
-  
+  const { name, imageUrl } = formInput
+  const userId = req.user.id
+
   try {
-    const newGenre = await Genre.query().insertAndFetch({name, userId})
+    const newGenre = await Genre.query().insertAndFetch({ name, userId, imageUrl })
     const serializedGenre = await GenreSerializer.getSummary(newGenre)
     return res.status(200).json({ genre: serializedGenre })
   } catch (error) {
@@ -56,13 +56,13 @@ genresRouter.patch("/:id", async (req, res) => {
   try {
     const { body } = req
     const formInput = cleanUserInput(body)
-    const { name } = formInput
-    const genreId  = req.params.id
-
-    const editedGenre = await Genre.query()
-      .update({ name })
-      .where('id', genreId)
-    return res.status(201).json({ genre: editedGenre })
+    const { name, imageUrl } = formInput
+    const { id } = req.params
+    
+    await Genre.query()
+      .findById(id)
+      .update({ name, imageUrl })
+    return res.status(201).json()
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })
@@ -73,15 +73,15 @@ genresRouter.patch("/:id", async (req, res) => {
 
 genresRouter.delete("/:id", async (req, res) => {
   try {
-    const genreId  = req.params.id
+    const { id } = req.params
 
     await Podcast.query()
+      .where('genreId', id)
       .delete()
-      .where('genreId', genreId)
-    const deletedGenre = await Genre.query()
+    await Genre.query()
+      .findById(id)
       .delete()
-      .where('id', genreId)
-    return res.status(201).json({ genre: deletedGenre })
+    return res.status(201).json()
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })

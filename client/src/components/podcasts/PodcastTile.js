@@ -30,7 +30,7 @@ const PodcastTile = ({ podcast, user }) => {
 
   useEffect(() => {
     podcast.userVotes.forEach(vote => {
-      if (vote.userId === user.id) {
+      if (user && vote.userId === user.id) {
         getUserVoteState(vote.value)
       }
     })
@@ -145,13 +145,19 @@ const PodcastTile = ({ podcast, user }) => {
   }
 
   return (
-    <div className='callout primary'>
-      <Link to={`/podcasts/${podcast.id}`}>
-        <h1>{podcast.name}</h1>
-        <p>{podcast.description}</p>
-      </Link>
-      {voteButtons}
-      {editDeleteButtons}
+    <div className="cell">
+      <div className='card text-center'>
+        <Link to={`/podcasts/${podcast.id}`}>
+          <div className="card-divider">
+            <h1>{podcast.name}</h1>
+          </div>
+          <div className="card-section">
+            <p>{podcast.description}</p>
+          </div>
+        </Link>
+        {voteButtons}
+        {editDeleteButtons}
+      </div>
     </div>
   )
 }
