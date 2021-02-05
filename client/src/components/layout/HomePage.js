@@ -14,7 +14,7 @@ const HomePage = () => {
 
           <div key="add-podcast">
             <Link to="/podcasts" type="button" className="button">
-              View Podcast
+              View Podcasts
             </Link>
           </div>
         </div>
